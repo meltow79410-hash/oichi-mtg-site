@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>お市YT 競合ベンチマーク比較表</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f5f5f7;
+    padding: 40px 20px;
+    color: #1d1d1f;
+  }
+  h1 { text-align: center; margin-bottom: 10px; font-size: 28px; }
+  .lead { text-align: center; color: #86868b; margin-bottom: 40px; font-size: 14px; }
+
+  .map {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .map h2 { font-size: 20px; margin-bottom: 20px; }
+  .quadrant {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    text-align: center;
+    position: relative;
+  }
+  .quad {
+    padding: 24px;
+    border-radius: 12px;
+    min-height: 180px;
+  }
+  .quad.q1 { background: #ffe5ec; }
+  .quad.q2 { background: #fff4e0; }
+  .quad.q3 { background: #e0f2ff; }
+  .quad.q4 { background: #e8f5e9; }
+  .quad strong { display: block; margin-bottom: 8px; font-size: 14px; }
+  .quad span { font-size: 13px; color: #424245; line-height: 1.7; }
+  .axis-label {
+    text-align: center;
+    font-size: 12px;
+    color: #86868b;
+    margin: 8px 0;
+  }
+
+  .comparison {
+    background: white;
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 1500px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    overflow-x: auto;
+  }
+  .comparison h2 { font-size: 20px; margin-bottom: 16px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    min-width: 1100px;
+  }
+  th, td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5ea;
+    vertical-align: top;
+  }
+  th {
+    background: #f5f5f7;
+    font-weight: bold;
+    font-size: 12px;
+    color: #1d1d1f;
+    position: sticky;
+    top: 0;
+  }
+  tr.oichi {
+    background: linear-gradient(135deg, #ffe5ec, #fff4f7);
+  }
+  tr.oichi td { font-weight: bold; }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 8px;
+    font-size: 11px;
+    font-weight: bold;
+    color: white;
+  }
+  .badge-direct { background: #e74c3c; }
+  .badge-format { background: #4a90e2; }
+  .badge-bench { background: #50c878; }
+  .badge-peer { background: #9b59b6; }
+  .badge-self { background: #ff6b9d; }
+  .scale-mega { color: #c44569; font-weight: bold; }
+  .scale-large { color: #4a90e2; font-weight: bold; }
+  .scale-mid { color: #50c878; }
+  .scale-small { color: #86868b; }
+
+  .insight {
+    background: linear-gradient(135deg, #fef9e7, #fff);
+    border-radius: 16px;
+    padding: 24px;
+    max-width: 1500px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .insight h2 { font-size: 20px; margin-bottom: 16px; }
+  .insight ul { padding-left: 24px; }
+  .insight li { padding: 6px 0; font-size: 14px; color: #424245; line-height: 1.6; }
+  .legend {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+</style>
+</head>
+<body>
+
+<h1>🏟️ お市YT 競合ベンチマーク比較表</h1>
+<div class="lead">10チャンネルの規模・特徴・お市が学ぶこと・差別化ポイントを一覧化</div>
+
+<!-- ポジショニングマップ -->
+<div class="map">
+  <h2>📍 ポジショニングマップ（職業権威 × 匂わせ強度）</h2>
+  <div class="axis-label">↑ 匂わせ強</div>
+  <div class="quadrant">
+    <div class="quad q1">
+      <strong>匂わせ強 × 職業権威なし</strong>
+      <span>整形アイドル轟ちゃん（93.6万）<br>武藤静香（3.6万）<br>永児郎（コンカフェ）</span>
+    </div>
+    <div class="quad q2">
+      <strong>匂わせ強 × 職業権威あり ★お市独占象限</strong>
+      <span><b>お市の叡智（5,880）</b><br>美咲かんな（看護師×TikTok）<br>いいこと悪いこと奥さん（看護師）</span>
+    </div>
+    <div class="quad q3">
+      <strong>匂わせ控え × 職業権威なし</strong>
+      <span>わたげ（ぼっち女子vlog）<br>こじらせOL（3.3万）<br>omichan（同期）</span>
+    </div>
+    <div class="quad q4">
+      <strong>匂わせ控え × 職業権威あり</strong>
+      <span>のべちゃん（14万）<br>和田さん。（60万）<br>美容看護師YUKI chan（3万）</span>
+    </div>
+  </div>
+  <div class="axis-label">← 職業権威なし　　　職業権威あり →</div>
+</div>
+
+<!-- 比較表 -->
+<div class="comparison">
+  <h2>📊 競合10チャンネル詳細比較</h2>
+  <div class="legend">
+    <span class="legend-item"><span class="badge badge-self">SELF</span>本人</span>
+    <span class="legend-item"><span class="badge badge-direct">直接競合</span>同質性高</span>
+    <span class="legend-item"><span class="badge badge-bench">権威ベンチ</span>規模目標</span>
+    <span class="legend-item"><span class="badge badge-format">フォーマット師匠</span>型を学ぶ</span>
+    <span class="legend-item"><span class="badge badge-peer">同期</span>立ち上がり比較</span>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>分類</th>
+        <th>チャンネル</th>
+        <th>規模</th>
+        <th>動画数</th>
+        <th>軸</th>
+        <th>強み</th>
+        <th>弱み</th>
+        <th>お市が学ぶこと</th>
+        <th>差別化要素</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="oichi">
+        <td><span class="badge badge-self">SELF</span></td>
+        <td>お市の叡智</td>
+        <td class="scale-small">5,880</td>
+        <td>9</td>
+        <td>現役エステ×大人漫画×ぼっち×匂わせ</td>
+        <td>4本柱独自／いいね率1.72%</td>
+        <td>投稿頻度／シリーズ化未着手</td>
+        <td>—</td>
+        <td>4本柱の同時保有が独自</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-direct">直接競合</span></td>
+        <td>のべちゃん</td>
+        <td class="scale-large">14万</td>
+        <td>771</td>
+        <td>元エステ×美容知識×ノーファンデ</td>
+        <td>身体悩み解決＋業界暴露で長期再生</td>
+        <td>エンタメ性弱め</td>
+        <td>「言いにくい悩み」検索流入型</td>
+        <td>お市は現役×匂わせで対抗</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-bench">権威ベンチ</span></td>
+        <td>和田さん。元美容部員</td>
+        <td class="scale-mega">60万</td>
+        <td>281</td>
+        <td>元美容部員×プロHowTo</td>
+        <td>初期量産で長期再生資産化</td>
+        <td>個性弱め</td>
+        <td>HowToのタイトル設計＋初期量産</td>
+        <td>お市はキャラ性で対抗</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-format">フォーマット師匠</span></td>
+        <td>こじらせOLちんとも</td>
+        <td class="scale-mid">3.3万</td>
+        <td>315</td>
+        <td>32歳婚活実体験</td>
+        <td>連載性＋自己開示でファン化</td>
+        <td>ジャンル固定的</td>
+        <td>連載自己開示型／フックワード</td>
+        <td>お市は職業権威の有無で差</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-direct">直接競合</span></td>
+        <td>美咲かんな（TikTok）</td>
+        <td class="scale-mid">非公開</td>
+        <td>—</td>
+        <td>看護師×匂わせ語り</td>
+        <td>職業権威×匂わせの代表</td>
+        <td>長尺コンテンツ少</td>
+        <td>質問コーナー・タイトル直球性</td>
+        <td>お市はYT軸＋大人漫画で差</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-format">フォーマット師匠</span></td>
+        <td>整形アイドル轟ちゃん</td>
+        <td class="scale-mega">93.6万</td>
+        <td>1,311</td>
+        <td>顔出しキャラあるあるコント</td>
+        <td>Shortsコント観察眼で爆発</td>
+        <td>ジャンル違い大</td>
+        <td>サロンあるあるコント化に応用</td>
+        <td>お市はプロ権威で差</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-format">フォーマット師匠</span></td>
+        <td>武藤静香</td>
+        <td class="scale-mid">3.6万</td>
+        <td>101</td>
+        <td>元アイドル×匂わせvlog</td>
+        <td>過去職業×プライベート公開</td>
+        <td>ペース不安定</td>
+        <td>過去職業権威の演出</td>
+        <td>お市は現役で対抗</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-format">フォーマット師匠</span></td>
+        <td>わたげ</td>
+        <td class="scale-mid">非公開</td>
+        <td>—</td>
+        <td>ぼっち女子vlog</td>
+        <td>撮影トーン・ぼっち日常の演出</td>
+        <td>職業権威なし</td>
+        <td>ぼっき撮影の画作り・尺感</td>
+        <td>お市はプロ要素で差</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-direct">直接競合</span></td>
+        <td>美容看護師YUKI chan</td>
+        <td class="scale-mid">3万</td>
+        <td>354</td>
+        <td>現役看護師×韓国美容</td>
+        <td>韓国レポ・体験検証</td>
+        <td>匂わせ控えめ</td>
+        <td>レポ＋検証企画</td>
+        <td>お市は匂わせ要素で差</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-peer">同期</span></td>
+        <td>大人漫画部</td>
+        <td class="scale-small">3,560</td>
+        <td>247</td>
+        <td>大人漫画レビュー量産（ボイス）</td>
+        <td>本数で本業ジャンル独占</td>
+        <td>顔出しなし／キャラ薄</td>
+        <td>本数による積み上げ</td>
+        <td>お市は顔出し本人語りで差</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-peer">同期</span></td>
+        <td>omichan ぼっち主婦</td>
+        <td class="scale-small">16</td>
+        <td>11</td>
+        <td>ぼっち主婦vlog</td>
+        <td>—</td>
+        <td>キャラ訴求弱／伸びず</td>
+        <td>失敗パターンの参考</td>
+        <td>お市は職業権威×匂わせで完勝</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- インサイト -->
+<div class="insight">
+  <h2>💡 競合分析からの戦略示唆</h2>
+  <ul>
+    <li><b>1. 「職業権威 × 匂わせ」象限はお市が事実上独占</b>。最接近は美咲かんな（看護師×TikTok）のみで、YT長尺ではほぼ完全独占。</li>
+    <li><b>2. 短期ベンチマークはのべちゃん（14万）</b>。同じ「元/現エステ」属性の最大規模。1動画あたり登録効率はお市が現状で勝っている。</li>
+    <li><b>3. 中期ベンチマークは和田さん。（60万）</b>。プロHowToの量産で長期再生資産化したモデル。お市の場合は「キャラ＋プロ」のハイブリッドで対抗。</li>
+    <li><b>4. フォーマット師匠は4人</b>：こじらせOL（連載自己開示）／轟ちゃん（コント）／武藤静香（vlog）／わたげ（ぼっち撮影）。それぞれの型を吸収。</li>
+    <li><b>5. 同期勢では量産型「大人漫画部」が脅威</b>。本数で先行される前にシリーズ化＋顔出し本人語りで差別化を確立する必要。</li>
+    <li><b>6. お市の独自性</b>：「現役×職業権威×大人漫画×ぼっち×匂わせ×顔出し」のセット保有者は競合マップ内にゼロ。</li>
+  </ul>
+</div>
+
+<!-- 学ぶべき要素マトリクス -->
+<div class="comparison">
+  <h2>🎓 各競合から取るべき要素マトリクス</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>カテゴリ</th>
+        <th>該当チャンネル</th>
+        <th>取るべき要素</th>
+        <th>優先度</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>身体悩み解決系HowTo</td>
+        <td>のべちゃん</td>
+        <td>「埋没毛・毛孔性苔癬・VIO」など検索流入型タイトル設計</td>
+        <td>🔴 最高</td>
+      </tr>
+      <tr>
+        <td>プロHowTo量産</td>
+        <td>和田さん。</td>
+        <td>初期量産で長期再生資産化／タイトル汎用性</td>
+        <td>🔴 最高</td>
+      </tr>
+      <tr>
+        <td>連載自己開示</td>
+        <td>こじらせOL</td>
+        <td>「過去一」「N回目」フックワード／実体験連載</td>
+        <td>🟠 高</td>
+      </tr>
+      <tr>
+        <td>キャラ観察コント</td>
+        <td>整形アイドル轟ちゃん</td>
+        <td>「○○な客」コント化／演じ分けの技術</td>
+        <td>🟠 高</td>
+      </tr>
+      <tr>
+        <td>職業権威×匂わせ</td>
+        <td>美咲かんな</td>
+        <td>質問コーナー・タイトル直球性</td>
+        <td>🔴 最高</td>
+      </tr>
+      <tr>
+        <td>vlog撮影トーン</td>
+        <td>わたげ</td>
+        <td>ぼっき日常の画作り／尺感／BGM選定</td>
+        <td>🟠 高</td>
+      </tr>
+      <tr>
+        <td>体験レポ／検証</td>
+        <td>美容看護師YUKI chan</td>
+        <td>韓国レポ・サロン体験レポの構成</td>
+        <td>🟡 中</td>
+      </tr>
+      <tr>
+        <td>過去職業の演出</td>
+        <td>武藤静香</td>
+        <td>過去/現職業を活かしたプライベート開示</td>
+        <td>🟡 中</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>

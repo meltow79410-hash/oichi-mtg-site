@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>お市YT 成長フェーズ詳細フローチャート</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f5f5f7;
+    padding: 40px 20px;
+    color: #1d1d1f;
+  }
+  h1 { text-align: center; margin-bottom: 10px; font-size: 28px; }
+  .lead { text-align: center; color: #86868b; margin-bottom: 50px; font-size: 14px; }
+  .timeline {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-left: 60px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 30px;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #50c878, #4a90e2, #9b59b6, #f5a623);
+    border-radius: 2px;
+  }
+  .phase {
+    position: relative;
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-left: 6px solid;
+  }
+  .phase.p1 { border-color: #50c878; }
+  .phase.p2 { border-color: #4a90e2; }
+  .phase.p3 { border-color: #9b59b6; }
+  .phase.p4 { border-color: #f5a623; }
+  .phase::before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: -42px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .phase.p1::before { background: #50c878; }
+  .phase.p2::before { background: #4a90e2; }
+  .phase.p3::before { background: #9b59b6; }
+  .phase.p4::before { background: #f5a623; }
+  .phase-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .phase-num {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 12px;
+    color: white;
+  }
+  .phase.p1 .phase-num { background: #50c878; }
+  .phase.p2 .phase-num { background: #4a90e2; }
+  .phase.p3 .phase-num { background: #9b59b6; }
+  .phase.p4 .phase-num { background: #f5a623; }
+  .phase h2 { font-size: 22px; }
+  .phase-period {
+    font-size: 13px;
+    color: #86868b;
+    margin-left: auto;
+  }
+  .phase-tagline {
+    font-size: 14px;
+    color: #424245;
+    margin-bottom: 20px;
+    font-style: italic;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .card {
+    background: #f9f9fb;
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .card-title {
+    font-weight: bold;
+    font-size: 13px;
+    color: #1d1d1f;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .card ul { list-style: none; padding: 0; }
+  .card li {
+    font-size: 13px;
+    color: #424245;
+    padding: 3px 0;
+    padding-left: 12px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .card li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #c7c7cc;
+  }
+  .kpi-card {
+    background: linear-gradient(135deg, #fff, #fef9e7);
+    border-radius: 12px;
+    padding: 16px;
+    margin-top: 16px;
+  }
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .kpi {
+    text-align: center;
+    padding: 12px;
+    background: white;
+    border-radius: 8px;
+  }
+  .kpi-label { font-size: 11px; color: #86868b; }
+  .kpi-value { font-size: 18px; font-weight: bold; color: #1d1d1f; margin-top: 4px; }
+  .start-marker {
+    text-align: center;
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    padding: 20px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .start-marker strong { font-size: 18px; display: block; margin-bottom: 8px; }
+  .end-marker {
+    text-align: center;
+    background: linear-gradient(135deg, #f5a623, #e67e22);
+    color: white;
+    padding: 24px;
+    border-radius: 16px;
+    margin-top: 40px;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .end-marker strong { font-size: 20px; display: block; margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<h1>📈 お市YT 成長フェーズ詳細フローチャート</h1>
+<div class="lead">現状（5,880登録）から1年後（50,000+登録・月収100-200万円）までの時系列計画</div>
+
+<div class="start-marker">
+  <strong>🚀 START：現状（2026年5月時点）</strong>
+  YT登録 5,880／動画9本／月891ペース／IG・X・TikTok・xfans未稼働<br>
+  「回復フェーズ」を確認できた段階・加速フェーズへの移行が直近課題
+</div>
+
+<div class="timeline">
+
+  <div class="phase p1">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 1</span>
+      <h2>回復確認</h2>
+      <span class="phase-period">~30日（5月〜6月初）</span>
+    </div>
+    <div class="phase-tagline">投稿頻度を取り戻し、シリーズ化の地ならしをする</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">🎬 主要アクション</div>
+        <ul>
+          <li>月4-6本の投稿ペース定着</li>
+          <li>シリーズ2本立ち上げ（ぼっち◯◯／今夜の一冊）</li>
+          <li>IG/TikTok縦動画運用開始</li>
+          <li>YT切り抜きをIG/TikTokへ自動投下</li>
+          <li>撮影スケジュール明文化</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 マイルストーン</div>
+        <ul>
+          <li>5月末までに本編4本投下</li>
+          <li>シリーズvol.1完成</li>
+          <li>TikTokフォロワー1,000到達</li>
+          <li>IGリール週3本配信定着</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ リスク</div>
+        <ul>
+          <li>月2本水準への揺り戻し</li>
+          <li>シリーズ化が単発で終わる</li>
+          <li>クロス展開の編集負荷</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🛡️ 対策</div>
+        <ul>
+          <li>月1日の集中まとめ撮り</li>
+          <li>編集者ワークフロー確立</li>
+          <li>切り抜きはAIアシストで効率化</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="card-title">📊 期末KPI（1ヶ月後）</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">YT登録</div><div class="kpi-value">8,000+</div></div>
+        <div class="kpi"><div class="kpi-label">月間獲得</div><div class="kpi-value">2,000</div></div>
+        <div class="kpi"><div class="kpi-label">動画数</div><div class="kpi-value">13本</div></div>
+        <div class="kpi"><div class="kpi-label">TikTok</div><div class="kpi-value">1,000+</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p2">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 2</span>
+      <h2>拡張</h2>
+      <span class="phase-period">30〜90日（6月〜7月）</span>
+    </div>
+    <div class="phase-tagline">YT1万到達＋PR・コラボで外部接点を拡大する</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">🎬 主要アクション</div>
+        <ul>
+          <li>シリーズ2本を月2回ペースで継続</li>
+          <li>業界系トレンド企画3本投下</li>
+          <li>PR案件1本受託（脱毛器メーカー）</li>
+          <li>コラボ1本実施（同業or大人漫画系）</li>
+          <li>YT登録1万達成</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 マイルストーン</div>
+        <ul>
+          <li>YT登録 10,000突破</li>
+          <li>収益化条件達成（広告ON）</li>
+          <li>PR案件1本実施</li>
+          <li>コラボ動画公開</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ リスク</div>
+        <ul>
+          <li>初コラボの世界観ズレ</li>
+          <li>PR案件で広告色強くなる</li>
+          <li>追加業務でペース乱れ</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🛡️ 対策</div>
+        <ul>
+          <li>コラボ前に世界観合意書作成</li>
+          <li>PRは方針に沿う案件のみ受託</li>
+          <li>撮影体制を週1日固定化</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="card-title">📊 期末KPI（3ヶ月後）</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">YT登録</div><div class="kpi-value">12,000+</div></div>
+        <div class="kpi"><div class="kpi-label">月間獲得</div><div class="kpi-value">3,000</div></div>
+        <div class="kpi"><div class="kpi-label">PR月収</div><div class="kpi-value">15-30万</div></div>
+        <div class="kpi"><div class="kpi-label">IGフォロワー</div><div class="kpi-value">10,000+</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p3">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 3</span>
+      <h2>収益化本格</h2>
+      <span class="phase-period">90〜180日（7月〜10月）</span>
+    </div>
+    <div class="phase-tagline">xfansサブスクとTikTokライブで複合収益化を本格稼働</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">🎬 主要アクション</div>
+        <ul>
+          <li>xfansサブスク開始（限定コンテンツ）</li>
+          <li>TikTokライブ週2回稼働</li>
+          <li>YT2-3万到達／月収30万円突破</li>
+          <li>韓国インスタ立ち上げ</li>
+          <li>PR案件月2-3本受託</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 マイルストーン</div>
+        <ul>
+          <li>YT登録 25,000突破</li>
+          <li>xfans初月収益10万円</li>
+          <li>TikTokライブ収益化</li>
+          <li>5媒体合算月収30万円</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ リスク</div>
+        <ul>
+          <li>xfans方針の世界観破綻</li>
+          <li>規約変更による収益断絶</li>
+          <li>本人の燃え尽きリスク</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🛡️ 対策</div>
+        <ul>
+          <li>xfans限定もキャミ短パン規制維持</li>
+          <li>5媒体分散で1社依存回避</li>
+          <li>休息期を計画的に設定</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="card-title">📊 期末KPI（半年後）</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">YT登録</div><div class="kpi-value">25,000+</div></div>
+        <div class="kpi"><div class="kpi-label">IGインプ月</div><div class="kpi-value">3,000万</div></div>
+        <div class="kpi"><div class="kpi-label">xfans月</div><div class="kpi-value">30-50万</div></div>
+        <div class="kpi"><div class="kpi-label">合算月収</div><div class="kpi-value">50-80万</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="phase p4">
+    <div class="phase-header">
+      <span class="phase-num">PHASE 4</span>
+      <h2>自走体制</h2>
+      <span class="phase-period">180〜365日（10月〜翌年5月）</span>
+    </div>
+    <div class="phase-tagline">複合収益で月収100-200万円・エステ事業との相互送客を確立</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="card-title">🎬 主要アクション</div>
+        <ul>
+          <li>YT登録5万到達</li>
+          <li>サブ垢含めIG累計5,000万インプ</li>
+          <li>X月1,500万インプ達成</li>
+          <li>エステ3人目育成・事業拡大</li>
+          <li>有料Discord・グッズ展開検討</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🎯 マイルストーン</div>
+        <ul>
+          <li>YT登録 50,000突破</li>
+          <li>5媒体合算月収100-200万円</li>
+          <li>エステ事業3人体制</li>
+          <li>書籍化・大型タイアップ獲得</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">⚠️ リスク</div>
+        <ul>
+          <li>キャラ消耗・コンテンツマンネリ</li>
+          <li>事業拡大による本人負荷増</li>
+          <li>競合の追撃（量産型勢）</li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title">🛡️ 対策</div>
+        <ul>
+          <li>新キャラ路線（爬虫類・犬等）追加</li>
+          <li>業務分担でお市は出演特化</li>
+          <li>シリーズ化＋ストック量で防衛</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="kpi-card">
+      <div class="card-title">📊 期末KPI（1年後）</div>
+      <div class="kpi-grid">
+        <div class="kpi"><div class="kpi-label">YT登録</div><div class="kpi-value">50,000+</div></div>
+        <div class="kpi"><div class="kpi-label">IG累計</div><div class="kpi-value">5,000万</div></div>
+        <div class="kpi"><div class="kpi-label">X月インプ</div><div class="kpi-value">1,500万</div></div>
+        <div class="kpi"><div class="kpi-label">合算月収</div><div class="kpi-value">100-200万</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="end-marker">
+  <strong>🏆 GOAL：1年後（2027年5月）</strong>
+  YT登録50,000+／IG累計5,000万インプ／X月1,500万インプ／<br>
+  xfans＋TikTokライブ＋PR＋エステ事業の複合収益で月収100-200万円<br>
+  「お市の叡智」が個人クリエイター×エステ事業の自走モデルとして確立
+</div>
+
+</body>
+</html>

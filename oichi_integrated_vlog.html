@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>お市YT 統合vlog企画書「現役エステの帰宅ルーティン」</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f5f5f7;
+    padding: 40px 20px;
+    color: #1d1d1f;
+  }
+  h1 { text-align: center; margin-bottom: 10px; font-size: 28px; }
+  .lead { text-align: center; color: #86868b; margin-bottom: 40px; font-size: 14px; }
+
+  .hero {
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    padding: 32px;
+    border-radius: 16px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(196,69,105,0.25);
+  }
+  .hero h2 {
+    font-size: 26px;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-size: 15px;
+    opacity: 0.95;
+    line-height: 1.7;
+  }
+
+  .flow {
+    background: white;
+    border-radius: 16px;
+    padding: 32px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .flow h2 { font-size: 22px; margin-bottom: 24px; text-align: center; }
+
+  .scene-flow {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin: 32px 0;
+  }
+  .scene {
+    flex: 1;
+    min-width: 220px;
+    background: #f9f9fb;
+    border-radius: 12px;
+    padding: 20px;
+    border-top: 5px solid;
+    position: relative;
+  }
+  .scene.s1 { border-color: #ff6b9d; }
+  .scene.s2 { border-color: #50c878; }
+  .scene.s3 { border-color: #4a90e2; }
+  .scene.s4 { border-color: #9b59b6; }
+  .scene-num {
+    display: inline-block;
+    background: white;
+    color: #1d1d1f;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .scene h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .scene-time {
+    font-size: 12px;
+    color: #86868b;
+    margin-bottom: 12px;
+  }
+  .scene ul {
+    list-style: none;
+    padding: 0;
+  }
+  .scene li {
+    font-size: 12px;
+    color: #424245;
+    padding: 3px 0;
+    padding-left: 10px;
+    position: relative;
+    line-height: 1.5;
+  }
+  .scene li::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #c7c7cc;
+  }
+  .arrow {
+    align-self: center;
+    font-size: 24px;
+    color: #c7c7cc;
+  }
+
+  .differentiation {
+    background: linear-gradient(135deg, #fff4e0, #fff);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-left: 6px solid #f5a623;
+  }
+  .differentiation h2 { font-size: 20px; color: #f5a623; margin-bottom: 16px; }
+  .diff-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .diff-card {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+  }
+  .diff-card strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #1d1d1f;
+  }
+  .diff-card span {
+    font-size: 13px;
+    color: #424245;
+    line-height: 1.6;
+  }
+  .pie-chart {
+    text-align: center;
+    margin: 24px 0;
+  }
+  .pie-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 8px 0;
+    font-size: 14px;
+  }
+  .pie-bar {
+    height: 24px;
+    background: linear-gradient(90deg, #ff6b9d, #c44569);
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: bold;
+    min-width: 40px;
+  }
+
+  .info {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  }
+  .info h2 { font-size: 20px; margin-bottom: 16px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+  }
+  th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5ea;
+    font-size: 14px;
+    vertical-align: top;
+  }
+  th {
+    background: #f5f5f7;
+    font-weight: bold;
+  }
+
+  .clipping {
+    background: linear-gradient(135deg, #e0f2ff, #fff);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-left: 6px solid #4a90e2;
+  }
+  .clipping h2 { font-size: 20px; color: #4a90e2; margin-bottom: 16px; }
+  .clip-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .clip-card {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    border-left: 4px solid #4a90e2;
+  }
+  .clip-card strong {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+  .clip-card .platform {
+    font-size: 11px;
+    color: #4a90e2;
+    font-weight: bold;
+  }
+  .clip-card span {
+    font-size: 12px;
+    color: #424245;
+    line-height: 1.6;
+  }
+
+  .series {
+    background: linear-gradient(135deg, #f3e7ff, #fff);
+    border-radius: 16px;
+    padding: 28px;
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    border-left: 6px solid #9b59b6;
+  }
+  .series h2 { font-size: 20px; color: #9b59b6; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<h1>🎬 統合vlog企画書「現役エステの帰宅ルーティン」</h1>
+<div class="lead">帰宅 → 爬虫類のお世話 → お風呂・スキンケア → 大人漫画読みながら寝る</div>
+
+<div class="hero">
+  <h2>💎 1本で4要素全部入り・お市の世界観完全パッケージ</h2>
+  <p>
+    「現役エステティシャン」の職業権威 × 「爬虫類飼育」の差別化 × 「ASMR要素」の現代トレンド × 「大人漫画」のブランド資産<br>
+    すべてを1本のvlogに収め、複数切り抜きで5媒体に展開する設計
+  </p>
+</div>
+
+<!-- 4シーン構成フロー -->
+<div class="flow">
+  <h2>📍 4シーン構成フロー（10分尺）</h2>
+
+  <div class="scene-flow">
+    <div class="scene s1">
+      <span class="scene-num">SCENE 1</span>
+      <h3>帰宅</h3>
+      <div class="scene-time">0:00 - 2:00 (約2分)</div>
+      <ul>
+        <li>お疲れ様の挨拶＋玄関入り</li>
+        <li>制服のままでも一旦座る</li>
+        <li>「ただいま」の自然なつぶやき</li>
+        <li>カバン置き／手洗い／部屋着に着替え（カット切替）</li>
+        <li><b>"現役エステの素の表情"</b>で導入</li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="scene s2">
+      <span class="scene-num">SCENE 2</span>
+      <h3>爬虫類のお世話</h3>
+      <div class="scene-time">2:00 - 4:30 (約2.5分)</div>
+      <ul>
+        <li>飼育ケージ前で挨拶</li>
+        <li>名前・種類・年齢を紹介</li>
+        <li>給餌・霧吹き・温度チェック</li>
+        <li>抱っこOKならタッチシーン</li>
+        <li><b>差別化の最大の見せ場</b></li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="scene s3">
+      <span class="scene-num">SCENE 3</span>
+      <h3>お風呂・スキンケア</h3>
+      <div class="scene-time">4:30 - 7:30 (約3分)</div>
+      <ul>
+        <li>入浴剤紹介（PR動線）</li>
+        <li>湯気越しのバスタイム（タオル巻き）</li>
+        <li>お風呂上がりのスキンケア実演</li>
+        <li>クリーム塗布・パッキング音（ASMR）</li>
+        <li><b>プロのケア知識を自然に発信</b></li>
+      </ul>
+    </div>
+    <div class="arrow">→</div>
+    <div class="scene s4">
+      <span class="scene-num">SCENE 4</span>
+      <h3>大人漫画読みながら寝る</h3>
+      <div class="scene-time">7:30 - 10:00 (約2.5分)</div>
+      <ul>
+        <li>ベッドで部屋着＋漫画</li>
+        <li>今夜の一冊紹介（伏字でカバー隠し）</li>
+        <li>ページめくり音（自然なASMR）</li>
+        <li>本人のリアクション・つぶやき</li>
+        <li><b>「おやすみ」で締め＋次回予告</b></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- 差別化分析 -->
+<div class="differentiation">
+  <h2>🎯 差別化ポジション分析</h2>
+  <p style="font-size: 14px; color: #424245; line-height: 1.7;">
+    <b>「爬虫類 × 女子 × 美容 × ぼっち vlog」のセット保有者は競合圏内にほぼゼロ。</b>
+    爬虫類飼育系YouTuberはほぼ男性、女性vlog系は犬猫・雑貨が中心。<br>
+    お市の場合「現役エステ × 爬虫類 × 大人漫画」という3要素ギャップで、視聴者の脳内に強い人物像が即座に形成される。
+  </p>
+
+  <div class="diff-grid">
+    <div class="diff-card">
+      <strong>🦎 爬虫類飼育系</strong>
+      <span>ほぼ男性／飼育情報メイン／顔出し少ない<br>女性顔出しはレア</span>
+    </div>
+    <div class="diff-card">
+      <strong>👩 女性vlog系</strong>
+      <span>犬猫・雑貨が中心／爬虫類は出てこない<br>vlog市場の主流から完全に外れる</span>
+    </div>
+    <div class="diff-card">
+      <strong>💄 美容クリエイター系</strong>
+      <span>ペット出すなら犬猫が定番<br>爬虫類×美容は前例ほぼなし</span>
+    </div>
+    <div class="diff-card">
+      <strong>★ お市の独自ポジション</strong>
+      <span>美人エステ × 爬虫類 × 大人漫画<br>ギャップで一発記憶残る</span>
+    </div>
+  </div>
+
+  <div class="pie-chart" style="margin-top: 24px;">
+    <p style="font-size: 13px; color: #86868b; margin-bottom: 12px;">vlog市場における推定パイ規模</p>
+    <div class="pie-row">
+      <div style="width: 80px; text-align: right; font-size: 12px;">犬猫vlog</div>
+      <div class="pie-bar" style="width: 70%;">大多数</div>
+    </div>
+    <div class="pie-row">
+      <div style="width: 80px; text-align: right; font-size: 12px;">日常vlog</div>
+      <div class="pie-bar" style="width: 50%;">中〜大</div>
+    </div>
+    <div class="pie-row">
+      <div style="width: 80px; text-align: right; font-size: 12px;">爬虫類vlog</div>
+      <div class="pie-bar" style="width: 8%; background: linear-gradient(90deg, #50c878, #16a085);">小</div>
+    </div>
+    <div class="pie-row">
+      <div style="width: 80px; text-align: right; font-size: 12px;">爬虫類×女子</div>
+      <div class="pie-bar" style="width: 3%; background: linear-gradient(90deg, #f5a623, #e67e22);">極小</div>
+    </div>
+    <div class="pie-row">
+      <div style="width: 80px; text-align: right; font-size: 12px;">爬虫類×女子×美容</div>
+      <div class="pie-bar" style="width: 1%; background: linear-gradient(90deg, #ff6b9d, #c44569);">★ほぼゼロ</div>
+    </div>
+    <p style="font-size: 12px; color: #86868b; margin-top: 12px;">
+      → ニッチだがブルーオーシャン。完全独占ポジション化が可能。
+    </p>
+  </div>
+</div>
+
+<!-- 基本情報 -->
+<div class="info">
+  <h2>📝 企画基本情報</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>想定尺</td><td>10-12分</td></tr>
+    <tr><td>想定再生（YT初動）</td><td>20,000-35,000</td></tr>
+    <tr><td>長期再生資産</td><td>3万-6万 / 半年（ぼっちサウナ29,590相当）</td></tr>
+    <tr><td>衣装</td><td>制服→部屋着→バスタオル巻き→パジャマ／全シーン方針内</td></tr>
+    <tr><td>撮影場所</td><td>自宅完結（玄関／飼育ケージ前／浴室／ベッド）</td></tr>
+    <tr><td>撮影時間</td><td>半日 (4-5時間)</td></tr>
+    <tr><td>必要小道具</td><td>爬虫類用品／入浴剤／スキンケア／大人漫画3-5冊</td></tr>
+    <tr><td>BGM</td><td>静かなlofi系／生活音重視／ASMRシーンは無音</td></tr>
+    <tr><td>サムネ案</td><td>顔アップ＋爬虫類＋「現役エステの夜」白抜き</td></tr>
+    <tr><td>ベンチマーク</td><td>わたげ（撮影トーン）／chillsa系（生活感）</td></tr>
+  </table>
+</div>
+
+<!-- 切り抜き運用 -->
+<div class="clipping">
+  <h2>✂️ 切り抜き運用 - 1本から8素材</h2>
+  <p style="font-size: 14px; color: #424245; line-height: 1.7;">
+    1本の本編から各シーンを切り出し、5媒体に展開。投稿頻度問題と差別化の両立を実現。
+  </p>
+
+  <div class="clip-list">
+    <div class="clip-card">
+      <span class="platform">TikTok / IG Reels</span>
+      <strong>1. 「現役エステの帰宅瞬間」</strong>
+      <span>15秒／制服姿で帰宅→部屋着切替の trans</span>
+    </div>
+    <div class="clip-card">
+      <span class="platform">TikTok / IG Reels</span>
+      <strong>2. 「実は爬虫類飼ってます」</strong>
+      <span>20秒／衝撃のギャップ系／ニッチ層に刺さる</span>
+    </div>
+    <div class="clip-card">
+      <span class="platform">TikTok / IG Reels</span>
+      <strong>3. 「爬虫類への愛情たっぷり世話」</strong>
+      <span>30秒／給餌・霧吹き・タッチ／優しい一面</span>
+    </div>
+    <div class="clip-card">
+      <span class="platform">IG Reels / TikTok</span>
+      <strong>4. 「お風呂上がりスキンケアASMR」</strong>
+      <span>30秒／クリーム塗布音・パッキング音</span>
+    </div>
+    <div class="clip-card">
+      <span class="platform">YT Shorts</span>
+      <strong>5. 「現役エステの夜のスキンケア5分版」</strong>
+      <span>60秒／プロのHowTo抜粋</span>
+    </div>
+    <div class="clip-card">
+      <span class="platform">TikTok / IG Reels</span>
+      <strong>6. 「ベッドで漫画読みながら…」</strong>
+      <span>15秒／匂わせASMR／伏字カバー</span>
+    </div>
+    <div class="clip-card">
+      <span class="platform">X</span>
+      <strong>7. 写真スライド「お市の夜の3シーン」</strong>
+      <span>4枚画像／拡散用キャプション</span>
+    </div>
+    <div class="clip-card">
+      <span class="platform">xfans限定</span>
+      <strong>8. 完全版＋未公開シーン</strong>
+      <span>YT本編＋お風呂シーン拡張版</span>
+    </div>
+  </div>
+</div>
+
+<!-- シリーズ展開 -->
+<div class="series">
+  <h2>📚 シリーズ展開（vol.1 → vol.10）</h2>
+  <table>
+    <tr>
+      <th>Vol</th>
+      <th>タイトル</th>
+      <th>差別化要素</th>
+    </tr>
+    <tr><td>vol.1</td><td>現役エステの帰宅ルーティン【統合版】</td><td>4要素全部入り土台</td></tr>
+    <tr><td>vol.2</td><td>休日の朝から夜まで密着</td><td>休日バージョン</td></tr>
+    <tr><td>vol.3</td><td>サロン早朝出勤の朝ルーティン</td><td>朝特化</td></tr>
+    <tr><td>vol.4</td><td>爬虫類のお世話を本気で見せる回</td><td>爬虫類深掘り</td></tr>
+    <tr><td>vol.5</td><td>残業で疲れた日の癒しルーティン</td><td>共感ストーリー</td></tr>
+    <tr><td>vol.6</td><td>大人漫画一気読みの夜</td><td>漫画特化</td></tr>
+    <tr><td>vol.7</td><td>新しい爬虫類お迎えしました</td><td>ご報告系シリーズ連動</td></tr>
+    <tr><td>vol.8</td><td>季節のスキンケア入れ替え回</td><td>美容深掘り</td></tr>
+    <tr><td>vol.9</td><td>お風呂で1時間没頭する日</td><td>バスタイム特化</td></tr>
+    <tr><td>vol.10</td><td>ファン投票で決めた1日を生きてみる</td><td>視聴者参加型</td></tr>
+  </table>
+</div>
+
+<!-- 戦略本質 -->
+<div class="differentiation" style="border-color: #ff6b9d;">
+  <h2 style="color: #ff6b9d;">💡 この1本が達成する戦略目標</h2>
+  <div class="diff-grid">
+    <div class="diff-card">
+      <strong>① ブランディング統合</strong>
+      <span>4本柱（職業・大人漫画・ぼっち・匂わせ）を1本で全部見せる</span>
+    </div>
+    <div class="diff-card">
+      <strong>② 差別化最大化</strong>
+      <span>爬虫類×美容×ぼっちのギャップで1発キャラ確定</span>
+    </div>
+    <div class="diff-card">
+      <strong>③ 投稿頻度解決</strong>
+      <span>1本撮影で8素材→5媒体展開で月間投稿10本+ 確保</span>
+    </div>
+    <div class="diff-card">
+      <strong>④ シリーズ化起点</strong>
+      <span>vol.1〜vol.10で半年間の主力企画として運用</span>
+    </div>
+    <div class="diff-card">
+      <strong>⑤ クロス展開</strong>
+      <span>YT/IG/TikTok/X/xfansの5媒体全てに素材供給</span>
+    </div>
+    <div class="diff-card">
+      <strong>⑥ コラボ動線</strong>
+      <span>爬虫類YouTuber／美容系／vlog系すべての接点獲得</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
