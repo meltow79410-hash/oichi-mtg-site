@@ -293,6 +293,124 @@
     section { padding: 20px; }
     .vlog-grid { grid-template-columns: 1fr; }
   }
+
+  /* TOP5 クリック可能化 */
+  .top5-list li {
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .top5-list li:hover {
+    background: rgba(255,255,255,0.25);
+    transform: translateX(4px);
+  }
+  .top5-list li::after {
+    content: "▶ タップで詳細";
+    font-size: 11px;
+    opacity: 0.7;
+    margin-left: auto;
+  }
+
+  /* モーダル */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 1000;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 40px 20px;
+  }
+  .modal-overlay.active { display: flex; }
+  .modal {
+    background: white;
+    border-radius: 20px;
+    max-width: 900px;
+    width: 100%;
+    padding: 0;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    margin: auto;
+    overflow: hidden;
+  }
+  .modal-header {
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    padding: 32px 36px;
+    position: relative;
+  }
+  .modal-header h2 { font-size: 24px; margin-bottom: 8px; }
+  .modal-header .sub { font-size: 13px; opacity: 0.95; }
+  .modal-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: rgba(255,255,255,0.25);
+    border: none;
+    color: white;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .modal-body { padding: 32px 36px; }
+  .modal-body h3 {
+    font-size: 17px;
+    margin: 24px 0 12px;
+    color: #1d1d1f;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #f5f5f7;
+  }
+  .modal-body h3:first-child { margin-top: 0; }
+  .scene-block {
+    background: #f9f9fb;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-left: 4px solid #ff6b9d;
+  }
+  .scene-block .time {
+    font-size: 11px;
+    color: #c44569;
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  .scene-block .name { font-weight: bold; font-size: 14px; margin-bottom: 8px; }
+  .scene-block .content { font-size: 13px; color: #424245; line-height: 1.7; }
+  .script-quote {
+    background: #fff4e0;
+    border-left: 4px solid #f5a623;
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #1d1d1f;
+    margin: 8px 0;
+    font-style: italic;
+    line-height: 1.6;
+  }
+  .info-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    padding: 8px 0;
+    border-bottom: 1px solid #f0f0f5;
+    font-size: 13px;
+  }
+  .info-row strong { color: #86868b; font-size: 12px; }
+  .thumb-concept {
+    background: linear-gradient(135deg, #fef9e7, #fff);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin: 12px 0;
+    border-left: 4px solid #f5a623;
+  }
+  .thumb-concept strong { display: block; margin-bottom: 6px; font-size: 13px; }
+  .thumb-concept p { font-size: 13px; line-height: 1.6; color: #424245; }
+  body.modal-open { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -334,37 +452,37 @@
 
   <!-- TOP5 -->
   <div class="top5">
-    <h2>🥇 即着手TOP5（実施推奨順）</h2>
+    <h2>🥇 即着手TOP5（実施推奨順・タップで詳細）</h2>
     <ul class="top5-list">
-      <li>
+      <li onclick="openModal('top1')">
         <span class="top5-rank">🥇</span>
         <div class="top5-content">
           <strong>A-1 ぼっきサウナ vol.2</strong>
           <span>既キラー続編・最低再生保証</span>
         </div>
       </li>
-      <li>
+      <li onclick="openModal('top2')">
         <span class="top5-rank">🥈</span>
         <div class="top5-content">
           <strong>C-6 自宅紹介＋爬虫類</strong>
           <span>差別化最大・記憶残り力強</span>
         </div>
       </li>
-      <li>
+      <li onclick="openModal('top3')">
         <span class="top5-rank">🥉</span>
         <div class="top5-content">
           <strong>A-3 ぼっきラブホ女子会</strong>
           <span>バズ可能性最大・拡散性最強</span>
         </div>
       </li>
-      <li>
+      <li onclick="openModal('top4')">
         <span class="top5-rank">4</span>
         <div class="top5-content">
           <strong>C-1 統合vlog（帰宅ルーティン）</strong>
           <span>切り抜き8本生成・運用効率最強</span>
         </div>
       </li>
-      <li>
+      <li onclick="openModal('top5')">
         <span class="top5-rank">5</span>
         <div class="top5-content">
           <strong>B-2 韓国脱毛レポ</strong>
@@ -372,6 +490,411 @@
         </div>
       </li>
     </ul>
+  </div>
+
+  <!-- ========================== MODALS ========================== -->
+
+  <!-- TOP1: ぼっきサウナ vol.2 -->
+  <div class="modal-overlay" id="modal-top1" onclick="if(event.target===this)closeModal('top1')">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('top1')">✕</button>
+        <h2>🥇 A-1 ぼっきサウナ vol.2</h2>
+        <div class="sub">既ヒット32,383再生「ぼっちサウナ」の続編／別エリア人気サウナで第2弾</div>
+      </div>
+      <div class="modal-body">
+
+        <h3>📊 企画基本情報</h3>
+        <div class="info-row"><strong>尺</strong><span>7-10分</span></div>
+        <div class="info-row"><strong>想定再生</strong><span>20,000-35,000（既存ファン期待値）</span></div>
+        <div class="info-row"><strong>切り抜き</strong><span>5本（前/中/後/感想/匂わせ）</span></div>
+        <div class="info-row"><strong>撮影時間</strong><span>半日（4-5時間）</span></div>
+        <div class="info-row"><strong>露出</strong><span>サ着・タオル</span></div>
+        <div class="info-row"><strong>必要小道具</strong><span>サウナハット／タオル／お風呂セット／撮影用GoPro</span></div>
+
+        <h3>🎬 構成（10分尺）</h3>
+        <div class="scene-block">
+          <div class="time">0:00 - 0:30</div>
+          <div class="name">フック・期待値設定</div>
+          <div class="content">前作との比較を匂わせる導入「みんなお待たせ、今日は…」<br>今回のサウナを匂わせて期待感UP</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">0:30 - 1:30</div>
+          <div class="name">来店・準備シーン</div>
+          <div class="content">店構え／受付／ロッカーまで／サ着への着替えカット切替<br>サウナの説明（雰囲気・客層）</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">1:30 - 4:00</div>
+          <div class="name">サウナ本番①</div>
+          <div class="content">サウナ室内（撮影OK部分のみ）／水風呂／外気浴<br>表情アップで暑さリアクション</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">4:00 - 6:00</div>
+          <div class="name">休憩・食事シーン</div>
+          <div class="content">休憩室／サウナ飯／ドリンク／満たされた表情<br>「今日は前回より…」匂わせコメント</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">6:00 - 8:30</div>
+          <div class="name">サウナ本番②／クライマックス</div>
+          <div class="content">2セット目／一番気持ちいい瞬間／「すごい量…」匂わせワード<br>顔の表情を多めに撮る</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">8:30 - 10:00</div>
+          <div class="name">帰宅・締め</div>
+          <div class="content">サウナ後の肌チェック（プロ目線）／満たされた顔／<br>「次行きたいサウナ募集」コメント誘導</div>
+        </div>
+
+        <h3>🎤 セリフ案（抜粋）</h3>
+        <div class="script-quote">「みんなお待たせしました、今日はぼっきサウナvol.2を撮りに来てます。前回のサウナも良かったんですけど、今回は…」</div>
+        <div class="script-quote">「あ、もう汗ヤバい…。でも前回より、なんか…止まんなくなりそう…」</div>
+        <div class="script-quote">「現役エステ的にも、サウナ後の肌は最高なんですよ。毛穴が…ね？」</div>
+        <div class="script-quote">「次行きたいサウナあったらコメントで教えて。私、また一人で行ってくるんで」</div>
+
+        <h3>🖼 サムネ案</h3>
+        <div class="thumb-concept">
+          <strong>構図</strong>
+          <p>サウナ後の上気した顔アップ＋「ぼっきサウナ vol.2」白抜き太文字＋「また大量に出た…💦」赤吹き出し</p>
+        </div>
+
+        <h3>✂️ 切り抜き5本</h3>
+        <div class="info-row"><strong>切り抜き1</strong><span>準備〜サ着まで（30秒）／IG/TikTok</span></div>
+        <div class="info-row"><strong>切り抜き2</strong><span>サウナで限界の顔（20秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き3</strong><span>外気浴の至福（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き4</strong><span>サウナ飯（15秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き5</strong><span>「また一人で来ました」匂わせ（10秒）／TikTok</span></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP2: 自宅紹介＋爬虫類 -->
+  <div class="modal-overlay" id="modal-top2" onclick="if(event.target===this)closeModal('top2')">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('top2')">✕</button>
+        <h2>🥈 C-6 自宅紹介＋爬虫類ルームツアー</h2>
+        <div class="sub">差別化最大／「現役エステ×爬虫類×女子」競合ゼロのブルーオーシャン</div>
+      </div>
+      <div class="modal-body">
+
+        <h3>📊 企画基本情報</h3>
+        <div class="info-row"><strong>尺</strong><span>12-15分</span></div>
+        <div class="info-row"><strong>想定再生</strong><span>30,000-50,000（差別化バズ可能性）</span></div>
+        <div class="info-row"><strong>切り抜き</strong><span>8-10本</span></div>
+        <div class="info-row"><strong>撮影時間</strong><span>4時間（自宅完結）</span></div>
+        <div class="info-row"><strong>露出</strong><span>私服</span></div>
+        <div class="info-row"><strong>必要小道具</strong><span>爬虫類のおやつ／飼育用品紹介素材／お気に入りインテリア</span></div>
+
+        <h3>🎬 構成（13分尺）</h3>
+        <div class="scene-block">
+          <div class="time">0:00 - 0:30</div>
+          <div class="name">フック・キャラ宣言</div>
+          <div class="content">「美容エステの私、実は…」とニヤッと笑顔／意外性の匂わせ</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">0:30 - 2:00</div>
+          <div class="name">玄関〜リビング</div>
+          <div class="content">玄関入り／靴・コート置き場／リビング全体</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">2:00 - 4:00</div>
+          <div class="name">キッチン・ダイニング</div>
+          <div class="content">お気に入りキッチン用品／冷蔵庫の中（軽く）</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">4:00 - 8:00</div>
+          <div class="name">★メイン：爬虫類スペース</div>
+          <div class="content">ケージ前で紹介／名前・種類・年齢／飼い始めた理由<br>給餌・霧吹き・タッチシーン／本人の優しい表情多用</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">8:00 - 10:00</div>
+          <div class="name">寝室・ドレッサー</div>
+          <div class="content">ベッド／枕／お気に入りパジャマ／ドレッサーまわり</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">10:00 - 11:30</div>
+          <div class="name">大人漫画コーナー</div>
+          <div class="content">本棚紹介／お気に入り3冊チラ見せ／ブランド連動</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">11:30 - 13:00</div>
+          <div class="name">締め・FAQ</div>
+          <div class="content">「爬虫類飼ってる女子の質問BOX募集」<br>シリーズ化宣言</div>
+        </div>
+
+        <h3>🎤 セリフ案（抜粋）</h3>
+        <div class="script-quote">「美容エステの私、実は…ある生き物を飼ってます。たぶんみんなの想像と違うと思う」</div>
+        <div class="script-quote">「触り方ね、こうやってゆっくり…うん、優しく触れば噛んだりしないよ。可愛いでしょ？」</div>
+        <div class="script-quote">「『なんで爬虫類？』ってよく聞かれるんだけど、私的にはね…」</div>
+        <div class="script-quote">「これから一緒に成長記録撮ってこうと思うから、シリーズ化するよ」</div>
+
+        <h3>🖼 サムネ案</h3>
+        <div class="thumb-concept">
+          <strong>構図</strong>
+          <p>爬虫類を肩に乗せた笑顔＋「現役エステ、実は…」白抜き＋「自宅初公開」赤吹き出し</p>
+        </div>
+
+        <h3>✂️ 切り抜き8本</h3>
+        <div class="info-row"><strong>切り抜き1</strong><span>「実は爬虫類飼ってます」ギャップ宣言（15秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き2</strong><span>給餌シーン（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き3</strong><span>抱っこタッチシーン（20秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き4</strong><span>名前由来・飼った理由（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き5</strong><span>キッチン紹介（15秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き6</strong><span>大人漫画コレクション（20秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き7</strong><span>パジャマ紹介（10秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き8</strong><span>FAQ「飼育費」（20秒）／IG</span></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP3: ぼっきラブホ -->
+  <div class="modal-overlay" id="modal-top3" onclick="if(event.target===this)closeModal('top3')">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('top3')">✕</button>
+        <h2>🥉 A-3 ぼっきラブホ女子会</h2>
+        <div class="sub">バズ可能性最大／「ラブホ女1人」自体が強烈フック</div>
+      </div>
+      <div class="modal-body">
+
+        <h3>📊 企画基本情報</h3>
+        <div class="info-row"><strong>尺</strong><span>12-15分</span></div>
+        <div class="info-row"><strong>想定再生</strong><span>40,000+（バズ可能性最大）</span></div>
+        <div class="info-row"><strong>切り抜き</strong><span>8-10本</span></div>
+        <div class="info-row"><strong>撮影時間</strong><span>4-6時間（休憩利用）</span></div>
+        <div class="info-row"><strong>露出</strong><span>部屋着・浴衣</span></div>
+        <div class="info-row"><strong>必要小道具</strong><span>大人漫画／お酒／お菓子／パジャマ／GoPro</span></div>
+        <div class="info-row"><strong>注意</strong><span>規約配慮／健全な利用シーンに徹する</span></div>
+
+        <h3>🎬 構成（13分尺）</h3>
+        <div class="scene-block">
+          <div class="time">0:00 - 0:30</div>
+          <div class="name">フック・告白</div>
+          <div class="content">「今日、女1人でラブホ来ました」ストレート宣言</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">0:30 - 1:30</div>
+          <div class="name">入店・予約</div>
+          <div class="content">受付パネル選択／受付やり取り（顔モザイク）／部屋へ</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">1:30 - 3:30</div>
+          <div class="name">部屋ツアー</div>
+          <div class="content">ベッド／お風呂／アメニティ／カラオケ／自販機<br>「女1人でこれ使うの…」</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">3:30 - 5:30</div>
+          <div class="name">大画面で大人漫画タイム</div>
+          <div class="content">大画面に漫画映して読む／ベッドでゴロゴロ／ブランド連動</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">5:30 - 7:30</div>
+          <div class="name">大浴場・お風呂</div>
+          <div class="content">大きいお風呂を堪能／タオル巻きでバスシーン<br>「家のお風呂と全然違う」感想</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">7:30 - 9:30</div>
+          <div class="name">食事・ドリンクタイム</div>
+          <div class="content">ルームサービス／持ち込みお酒／ベッドでお菓子</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">9:30 - 11:30</div>
+          <div class="name">深夜の語り</div>
+          <div class="content">ベッドで寝転がってカメラに語りかけ／「ラブホで1人って…」匂わせ</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">11:30 - 13:00</div>
+          <div class="name">チェックアウト・締め</div>
+          <div class="content">朝の準備／受付ベル／「また来ます」</div>
+        </div>
+
+        <h3>🎤 セリフ案（抜粋）</h3>
+        <div class="script-quote">「今日ね、女1人でラブホ来ました。意味ないと思った？私もそう思った。でも入りたかったんだから仕方ない」</div>
+        <div class="script-quote">「いや、お風呂デカすぎ。家のと全然違う…これは…1人で使うの贅沢すぎる…」</div>
+        <div class="script-quote">「カラオケもあるし、大人漫画も映せるし、これ完全に1人で楽しめる施設じゃないですか？」</div>
+        <div class="script-quote">「『ラブホで1人で何してるの？』って思った人、コメントで聞いて。本音で答えるから」</div>
+
+        <h3>🖼 サムネ案</h3>
+        <div class="thumb-concept">
+          <strong>構図</strong>
+          <p>ラブホのハート型ベッドでくつろぐ姿＋「女1人でラブホ来た」白抜き＋「マジで快適」赤吹き出し</p>
+        </div>
+
+        <h3>✂️ 切り抜き8本</h3>
+        <div class="info-row"><strong>切り抜き1</strong><span>「女1人でラブホ」宣言（15秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き2</strong><span>パネル選び（20秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き3</strong><span>ベッドダイブ（10秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き4</strong><span>お風呂感激（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き5</strong><span>カラオケ熱唱（20秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き6</strong><span>大画面漫画（15秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き7</strong><span>深夜の本音語り（30秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き8</strong><span>「また来ます」締め（10秒）／TikTok</span></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP4: 統合vlog -->
+  <div class="modal-overlay" id="modal-top4" onclick="if(event.target===this)closeModal('top4')">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('top4')">✕</button>
+        <h2>4️⃣ C-1 統合vlog・帰宅ルーティン</h2>
+        <div class="sub">1本で4要素全部入り／切り抜き8本生成・運用効率最強</div>
+      </div>
+      <div class="modal-body">
+
+        <h3>📊 企画基本情報</h3>
+        <div class="info-row"><strong>尺</strong><span>10-12分</span></div>
+        <div class="info-row"><strong>想定再生</strong><span>25,000-40,000</span></div>
+        <div class="info-row"><strong>切り抜き</strong><span>8本</span></div>
+        <div class="info-row"><strong>撮影時間</strong><span>半日（自宅完結）</span></div>
+        <div class="info-row"><strong>露出</strong><span>制服→部屋着→浴衣→パジャマ</span></div>
+        <div class="info-row"><strong>必要小道具</strong><span>制服／爬虫類用品／入浴剤／スキンケア／大人漫画</span></div>
+
+        <h3>🎬 4シーン構成（10分尺）</h3>
+        <div class="scene-block">
+          <div class="time">0:00 - 2:00 / SCENE 1</div>
+          <div class="name">帰宅</div>
+          <div class="content">お疲れ様の挨拶＋玄関入り／制服→部屋着への着替え／「ただいま」</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">2:00 - 4:30 / SCENE 2</div>
+          <div class="name">爬虫類のお世話</div>
+          <div class="content">飼育ケージ前で挨拶／給餌・霧吹き・温度チェック／差別化最大の見せ場</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">4:30 - 7:30 / SCENE 3</div>
+          <div class="name">お風呂・スキンケア</div>
+          <div class="content">入浴剤紹介／湯気越しのバスタイム／お風呂上がりスキンケア実演（プロ目線）</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">7:30 - 10:00 / SCENE 4</div>
+          <div class="name">大人漫画読みながら寝る</div>
+          <div class="content">ベッドで部屋着＋漫画／今夜の一冊紹介（伏字でカバー隠し）／「おやすみ」</div>
+        </div>
+
+        <h3>🎤 セリフ案（抜粋）</h3>
+        <div class="script-quote">「お疲れ様でしたー。今日も無事に帰宅。早く着替えたい…」</div>
+        <div class="script-quote">「（爬虫類ちゃん）ただいま〜、今日もいい子だった？ご飯あげるね」</div>
+        <div class="script-quote">「お風呂上がりのスキンケア、プロが本気でやるとこうなります」</div>
+        <div class="script-quote">「今夜の一冊はこれ…言えない。気になる人は伏字で察して」</div>
+
+        <h3>🖼 サムネ案</h3>
+        <div class="thumb-concept">
+          <strong>構図</strong>
+          <p>4シーンの分割サムネ＋「現役エステの帰宅ルーティン」白抜き＋「4要素全部見せ」赤吹き出し</p>
+        </div>
+
+        <h3>✂️ 切り抜き8本（媒体別）</h3>
+        <div class="info-row"><strong>切り抜き1</strong><span>制服→部屋着transition（15秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き2</strong><span>「実は爬虫類…」ギャップ（20秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き3</strong><span>爬虫類お世話（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き4</strong><span>スキンケアASMR（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き5</strong><span>プロのスキンケア5分版（60秒）／YT Shorts</span></div>
+        <div class="info-row"><strong>切り抜き6</strong><span>ベッドで漫画（15秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き7</strong><span>写真スライド「お市の夜3シーン」／X</span></div>
+        <div class="info-row"><strong>切り抜き8</strong><span>完全版＋未公開／xfans限定</span></div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- TOP5: 韓国脱毛 -->
+  <div class="modal-overlay" id="modal-top5" onclick="if(event.target===this)closeModal('top5')">
+    <div class="modal">
+      <div class="modal-header">
+        <button class="modal-close" onclick="closeModal('top5')">✕</button>
+        <h2>5️⃣ B-2 韓国脱毛レポ</h2>
+        <div class="sub">旅行vlog×プロ要素／PR動線あり／海外レポ系で拡散性高</div>
+      </div>
+      <div class="modal-body">
+
+        <h3>📊 企画基本情報</h3>
+        <div class="info-row"><strong>尺</strong><span>15-20分</span></div>
+        <div class="info-row"><strong>想定再生</strong><span>35,000-55,000（海外レポ系強）</span></div>
+        <div class="info-row"><strong>切り抜き</strong><span>12本</span></div>
+        <div class="info-row"><strong>撮影時間</strong><span>2泊3日（弾丸）</span></div>
+        <div class="info-row"><strong>露出</strong><span>私服・キャミ部分施術</span></div>
+        <div class="info-row"><strong>必要予算</strong><span>渡韓費用5-10万円／施術代3-5万円</span></div>
+        <div class="info-room"><strong>PR動線</strong><span>韓国クリニック・韓国コスメメーカー</span></div>
+
+        <h3>🎬 構成（18分尺）</h3>
+        <div class="scene-block">
+          <div class="time">0:00 - 0:30</div>
+          <div class="name">フック・宣言</div>
+          <div class="content">「現役エステの私が韓国で脱毛してきました」</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">0:30 - 2:00</div>
+          <div class="name">準備・出発</div>
+          <div class="content">パッキング／空港／フライト準備</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">2:00 - 4:00</div>
+          <div class="name">韓国到着・観光</div>
+          <div class="content">仁川空港／ホテルチェックイン／街歩き</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">4:00 - 6:00</div>
+          <div class="name">クリニック下調べ・選定</div>
+          <div class="content">事前リサーチ／カウンセリング比較／プロ目線で選定</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">6:00 - 10:00</div>
+          <div class="name">★メイン：脱毛施術体験</div>
+          <div class="content">クリニック訪問／カウンセリング／施術（音と所作のみ）<br>日本との違いをプロ目線で解説</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">10:00 - 12:00</div>
+          <div class="name">アフター・感想</div>
+          <div class="content">施術直後の肌チェック／プロ評価／日本との比較</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">12:00 - 14:00</div>
+          <div class="name">韓国コスメ爆買い</div>
+          <div class="content">Olive Young／韓国コスメ／お土産／お市厳選</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">14:00 - 16:00</div>
+          <div class="name">韓国グルメ・観光</div>
+          <div class="content">サムギョプサル／チーズタッカルビ／カフェ巡り</div>
+        </div>
+        <div class="scene-block">
+          <div class="time">16:00 - 18:00</div>
+          <div class="name">帰国・総括</div>
+          <div class="content">旅費全公開／プロ視点の総括／「日本と韓国、結局どっち？」</div>
+        </div>
+
+        <h3>🎤 セリフ案（抜粋）</h3>
+        <div class="script-quote">「現役エステの私が、なんで韓国まで脱毛しに来たかというと…」</div>
+        <div class="script-quote">「いやこれ、痛みの感覚が日本と全然違う…プロから見るとこれは…」</div>
+        <div class="script-quote">「終わってすぐ肌見せます。ここ…見てください…まじで違うんですよ」</div>
+        <div class="script-quote">「今回かかった費用、全部公開します。総額は…」</div>
+
+        <h3>🖼 サムネ案</h3>
+        <div class="thumb-concept">
+          <strong>構図</strong>
+          <p>韓国の街並みを背景にした顔アップ＋「現役エステが韓国で脱毛」白抜き＋「日本と全然違う」赤吹き出し</p>
+        </div>
+
+        <h3>✂️ 切り抜き12本</h3>
+        <div class="info-row"><strong>切り抜き1</strong><span>韓国行く理由宣言（15秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き2</strong><span>韓国到着・空気感（20秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き3</strong><span>クリニック前到着（15秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き4</strong><span>施術中の所作（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き5</strong><span>施術後の肌チェック（30秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き6</strong><span>「日本と全然違う」プロ評価（45秒）／YT Shorts</span></div>
+        <div class="info-row"><strong>切り抜き7</strong><span>Olive Young爆買い（30秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き8</strong><span>韓国コスメ厳選紹介（45秒）／YT Shorts</span></div>
+        <div class="info-row"><strong>切り抜き9</strong><span>サムギョプサルASMR（20秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き10</strong><span>夜のソウル散歩（15秒）／IG</span></div>
+        <div class="info-row"><strong>切り抜き11</strong><span>旅費公開（30秒）／TikTok</span></div>
+        <div class="info-row"><strong>切り抜き12</strong><span>総括「結局どっち？」（45秒）／YT Shorts</span></div>
+
+      </div>
+    </div>
   </div>
 
   <!-- カテゴリA -->
@@ -1093,6 +1616,26 @@
 </div>
 
 <a href="#" class="back-to-top">↑</a>
+
+<script>
+function openModal(id) {
+  document.getElementById('modal-' + id).classList.add('active');
+  document.body.classList.add('modal-open');
+}
+function closeModal(id) {
+  document.getElementById('modal-' + id).classList.remove('active');
+  document.body.classList.remove('modal-open');
+}
+// ESCで閉じる
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.modal-overlay.active').forEach(function(m) {
+      m.classList.remove('active');
+    });
+    document.body.classList.remove('modal-open');
+  }
+});
+</script>
 
 </body>
 </html>
