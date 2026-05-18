@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>お市vlog企画書 30本（粒度高め予備ストック）</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: #f5f5f7;
+    color: #1d1d1f;
+    line-height: 1.6;
+  }
+  .header {
+    background: linear-gradient(135deg, #4a90e2, #2c3e50);
+    color: white;
+    padding: 48px 20px;
+    text-align: center;
+    box-shadow: 0 4px 16px rgba(74,144,226,0.2);
+  }
+  .header h1 { font-size: 32px; margin-bottom: 12px; }
+  .header p { font-size: 15px; opacity: 0.95; }
+  .header .meta {
+    margin-top: 16px;
+    display: inline-flex;
+    gap: 16px;
+    background: rgba(255,255,255,0.2);
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 13px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 48px 20px; }
+
+  .strategy-box {
+    background: linear-gradient(135deg, #fef9e7, #fff);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border-left: 6px solid #f5a623;
+  }
+  .strategy-box h2 { font-size: 20px; margin-bottom: 12px; }
+  .strategy-box p { font-size: 14px; color: #424245; line-height: 1.8; }
+
+  .toc {
+    background: white;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .toc h2 { font-size: 18px; margin-bottom: 16px; }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+  }
+  .toc a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 14px;
+    background: #f9f9fb;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #1d1d1f;
+    font-size: 13px;
+    transition: all 0.2s;
+    border-left: 4px solid;
+  }
+  .toc a.a { border-color: #ff6b9d; }
+  .toc a.b { border-color: #4a90e2; }
+  .toc a.c { border-color: #50c878; }
+  .toc a.d { border-color: #9b59b6; }
+  .toc a.e { border-color: #f5a623; }
+  .toc a.f { border-color: #e74c3c; }
+  .toc a.g { border-color: #16a085; }
+  .toc a:hover { background: #f0f0f5; transform: translateX(4px); }
+  .toc-count {
+    margin-left: auto;
+    background: #e5e5ea;
+    color: #424245;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  section {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    scroll-margin-top: 20px;
+    border-top: 8px solid;
+  }
+  section.a { border-color: #ff6b9d; }
+  section.b { border-color: #4a90e2; }
+  section.c { border-color: #50c878; }
+  section.d { border-color: #9b59b6; }
+  section.e { border-color: #f5a623; }
+  section.f { border-color: #e74c3c; }
+  section.g { border-color: #16a085; }
+
+  section h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section .lead {
+    color: #86868b;
+    font-size: 14px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f5f5f7;
+  }
+
+  .vlog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+  }
+
+  .vlog-card {
+    background: #f9f9fb;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.2s;
+    border-top: 4px solid #ccc;
+  }
+  .vlog-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.08); }
+  .vlog-card.a { border-color: #ff6b9d; }
+  .vlog-card.b { border-color: #4a90e2; }
+  .vlog-card.c { border-color: #50c878; }
+  .vlog-card.d { border-color: #9b59b6; }
+  .vlog-card.e { border-color: #f5a623; }
+  .vlog-card.f { border-color: #e74c3c; }
+  .vlog-card.g { border-color: #16a085; }
+
+  .vlog-id {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 8px;
+    background: #1d1d1f;
+    color: white;
+    margin-bottom: 8px;
+  }
+  .vlog-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  .vlog-desc {
+    font-size: 12px;
+    color: #424245;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .vlog-specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 12px;
+    font-size: 11px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed #c7c7cc;
+  }
+  .vlog-specs strong {
+    display: block;
+    color: #86868b;
+    font-size: 10px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .vlog-specs .full { grid-column: 1 / -1; }
+  .vlog-tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 4px;
+    margin-top: 4px;
+  }
+  .tag-killer { background: #ff6b9d; color: white; }
+  .tag-viral { background: #e74c3c; color: white; }
+  .tag-pr { background: #f5a623; color: white; }
+  .tag-easy { background: #50c878; color: white; }
+  .tag-pro { background: #4a90e2; color: white; }
+  .tag-season { background: #9b59b6; color: white; }
+
+  .matrix-section {
+    background: white;
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 32px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+  }
+  .matrix-section h2 { font-size: 24px; margin-bottom: 16px; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 13px;
+  }
+  thead { background: #f5f5f7; }
+  th, td {
+    padding: 12px 10px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5ea;
+  }
+  th { font-weight: bold; font-size: 12px; }
+
+  .top5 {
+    background: linear-gradient(135deg, #ff6b9d, #c44569);
+    color: white;
+    border-radius: 16px;
+    padding: 36px;
+    margin-bottom: 32px;
+  }
+  .top5 h2 { color: white; font-size: 24px; margin-bottom: 16px; }
+  .top5-list { list-style: none; padding: 0; }
+  .top5-list li {
+    background: rgba(255,255,255,0.15);
+    padding: 14px 18px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 14px;
+  }
+  .top5-rank {
+    font-size: 24px;
+    width: 40px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+  .top5-content { flex: 1; }
+  .top5-content strong { display: block; font-size: 15px; margin-bottom: 4px; }
+  .top5-content span { font-size: 12px; opacity: 0.9; }
+
+  .tips {
+    background: #e0f2ff;
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 32px;
+  }
+  .tips h2 { font-size: 20px; color: #2c3e50; margin-bottom: 12px; }
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 16px;
+  }
+  .tip-card {
+    background: white;
+    padding: 16px;
+    border-radius: 10px;
+    border-left: 4px solid #4a90e2;
+  }
+  .tip-card strong { display: block; font-size: 14px; margin-bottom: 8px; }
+  .tip-card p { font-size: 13px; color: #424245; line-height: 1.6; }
+
+  .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #4a90e2, #2c3e50);
+    color: white;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(74,144,226,0.3);
+    font-size: 20px;
+    z-index: 999;
+  }
+
+  @media (max-width: 768px) {
+    section { padding: 20px; }
+    .vlog-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>📹 お市 vlog企画書 30本</h1>
+  <p>ASMR・コラボの裏で「いざ撮るとき」のための粒度高め予備ストック</p>
+  <div class="meta">
+    <span>📊 30企画</span>
+    <span>📁 7カテゴリ</span>
+    <span>🎬 切り抜き素材200+</span>
+    <span>🛡️ 全方針内</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="strategy-box">
+    <h2>🎯 vlog戦略の前提</h2>
+    <p>
+      ASMRチャンネルとコラボ系の裏で運用する<b>予備ストック</b>。<br>
+      全企画は<b>方針準拠</b>（キャミ＋短パンまで・露出抑制・エロ安売りしない）。<br>
+      <b>切り抜き素材化前提</b>で1本撮影から5-12本のIG/TikTokリール生成可能。
+    </p>
+  </div>
+
+  <div class="toc">
+    <h2>📑 カテゴリ目次</h2>
+    <div class="toc-grid">
+      <a href="#a" class="a">🛁 A. ぼっき体験系<span class="toc-count">8本</span></a>
+      <a href="#b" class="b">✈️ B. 旅行・場所系<span class="toc-count">8本</span></a>
+      <a href="#c" class="c">🏠 C. 自宅・生活系<span class="toc-count">8本</span></a>
+      <a href="#d" class="d">🛀 D. お風呂・寝室系<span class="toc-count">6本</span></a>
+      <a href="#e" class="e">📚 E. 漫画系<span class="toc-count">5本</span></a>
+      <a href="#f" class="f">🧪 F. 検証・チャレンジ系<span class="toc-count">6本</span></a>
+      <a href="#g" class="g">🎄 G. 季節・イベント系<span class="toc-count">4本</span></a>
+    </div>
+  </div>
+
+  <!-- TOP5 -->
+  <div class="top5">
+    <h2>🥇 即着手TOP5（実施推奨順）</h2>
+    <ul class="top5-list">
+      <li>
+        <span class="top5-rank">🥇</span>
+        <div class="top5-content">
+          <strong>A-1 ぼっきサウナ vol.2</strong>
+          <span>既キラー続編・最低再生保証</span>
+        </div>
+      </li>
+      <li>
+        <span class="top5-rank">🥈</span>
+        <div class="top5-content">
+          <strong>C-6 自宅紹介＋爬虫類</strong>
+          <span>差別化最大・記憶残り力強</span>
+        </div>
+      </li>
+      <li>
+        <span class="top5-rank">🥉</span>
+        <div class="top5-content">
+          <strong>A-3 ぼっきラブホ女子会</strong>
+          <span>バズ可能性最大・拡散性最強</span>
+        </div>
+      </li>
+      <li>
+        <span class="top5-rank">4</span>
+        <div class="top5-content">
+          <strong>C-1 統合vlog（帰宅ルーティン）</strong>
+          <span>切り抜き8本生成・運用効率最強</span>
+        </div>
+      </li>
+      <li>
+        <span class="top5-rank">5</span>
+        <div class="top5-content">
+          <strong>B-2 韓国脱毛レポ</strong>
+          <span>旅行vlog×プロ要素・PR動線あり</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- カテゴリA -->
+  <section id="a" class="a">
+    <h2>🛁 A. ぼっき体験系</h2>
+    <div class="lead">既最大ヒット「ぼっちサウナ」(32,383)の方程式を量産化</div>
+    <div class="vlog-grid">
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-1</span>
+        <span class="vlog-tag tag-killer">続編</span>
+        <div class="vlog-title">ぼっきサウナ vol.2</div>
+        <div class="vlog-desc">違うサウナで第2弾／同フォーマット／「今回もすごい量出ました」匂わせ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>7-10分</div>
+          <div><strong>想定再生</strong>20,000-35,000</div>
+          <div><strong>切り抜き</strong>5本</div>
+          <div><strong>撮影時間</strong>半日</div>
+          <div class="full"><strong>露出</strong>サ着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-2</span>
+        <span class="vlog-tag tag-viral">バズ</span>
+        <div class="vlog-title">ぼっきカプセルホテル1泊2日</div>
+        <div class="vlog-desc">男性多めカプセルホテルに女子1人で／浴衣＋カプセル空間／希少シーン</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>25,000-40,000</div>
+          <div><strong>切り抜き</strong>6-7本</div>
+          <div><strong>撮影時間</strong>1泊2日</div>
+          <div class="full"><strong>露出</strong>浴衣</div>
+        </div>
+      </div>
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-3</span>
+        <span class="vlog-tag tag-viral">バズMAX</span>
+        <div class="vlog-title">ぼっきラブホ女子会</div>
+        <div class="vlog-desc">ラブホに女1人／映画・風呂・大画面／「ラブホ女1人」自体が強烈フック</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>40,000+</div>
+          <div><strong>切り抜き</strong>8-10本</div>
+          <div><strong>撮影時間</strong>4-6時間</div>
+          <div class="full"><strong>露出</strong>部屋着・浴衣</div>
+        </div>
+      </div>
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-4</span>
+        <div class="vlog-title">ぼっき漫画喫茶8時間こもり</div>
+        <div class="vlog-desc">漫画喫茶個室で大人漫画読み続ける／お市ブランド連動</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-12分</div>
+          <div><strong>想定再生</strong>20,000-30,000</div>
+          <div><strong>切り抜き</strong>5-7本</div>
+          <div><strong>撮影時間</strong>8時間</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-5</span>
+        <span class="vlog-tag tag-easy">低コスト</span>
+        <div class="vlog-title">ぼっき焼肉カウンター</div>
+        <div class="vlog-desc">一人焼肉店で平気で食べる女子／注文〜食事〜帰宅</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>7-10分</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>5本</div>
+          <div><strong>撮影時間</strong>3時間</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-6</span>
+        <div class="vlog-title">ぼっき寿司カウンター</div>
+        <div class="vlog-desc">高級寿司一人カウンター／大将とのやり取り</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-10分</div>
+          <div><strong>想定再生</strong>15,000-25,000</div>
+          <div><strong>切り抜き</strong>4-5本</div>
+          <div><strong>撮影時間</strong>2時間</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-7</span>
+        <span class="vlog-tag tag-easy">低コスト</span>
+        <div class="vlog-title">ぼっき映画館・最後列センター</div>
+        <div class="vlog-desc">話題作を一人で見る／前後カットあり</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>6-8分</div>
+          <div><strong>想定再生</strong>12,000-22,000</div>
+          <div><strong>切り抜き</strong>3-4本</div>
+          <div><strong>撮影時間</strong>3時間</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card a">
+        <span class="vlog-id">A-8</span>
+        <span class="vlog-tag tag-killer">続編</span>
+        <div class="vlog-title">ぼっき水族館 vol.2 チンアナゴ続編</div>
+        <div class="vlog-desc">既ヒット「チンアナゴ」(9,877)の続編／別水族館</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>6-8分</div>
+          <div><strong>想定再生</strong>15,000-25,000</div>
+          <div><strong>切り抜き</strong>4-5本</div>
+          <div><strong>撮影時間</strong>4時間</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- カテゴリB -->
+  <section id="b" class="b">
+    <h2>✈️ B. 旅行・場所系</h2>
+    <div class="lead">移動を伴う体験型／切り抜き素材最多生成</div>
+    <div class="vlog-grid">
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-1</span>
+        <span class="vlog-tag tag-killer">高効率</span>
+        <div class="vlog-title">ぼっき温泉一人旅2泊3日</div>
+        <div class="vlog-desc">温泉宿で2泊／部屋食・大浴場・館内散策／vlog定番＋ぼっき軸</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>30,000-50,000</div>
+          <div><strong>切り抜き</strong>10本</div>
+          <div><strong>撮影時間</strong>2泊3日</div>
+          <div class="full"><strong>露出</strong>浴衣・タオル巻き</div>
+        </div>
+      </div>
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-2</span>
+        <span class="vlog-tag tag-pr">PR動線</span>
+        <span class="vlog-tag tag-pro">プロ要素</span>
+        <div class="vlog-title">韓国脱毛レポ</div>
+        <div class="vlog-desc">韓国医療脱毛体験／旅費公開／観光込み／プロ×海外レポ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>15-20分</div>
+          <div><strong>想定再生</strong>35,000-55,000</div>
+          <div><strong>切り抜き</strong>12本</div>
+          <div><strong>撮影時間</strong>2泊3日</div>
+          <div class="full"><strong>露出</strong>私服・キャミ部分施術</div>
+        </div>
+      </div>
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-3</span>
+        <span class="vlog-tag tag-viral">バズ</span>
+        <div class="vlog-title">沖縄1人旅・衝動旅行</div>
+        <div class="vlog-desc">海・カフェ・夕日／衣装多めで切り抜き素材MAX</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>15-18分</div>
+          <div><strong>想定再生</strong>30,000-45,000</div>
+          <div><strong>切り抜き</strong>10-12本</div>
+          <div><strong>撮影時間</strong>2泊3日</div>
+          <div class="full"><strong>露出</strong>キャミ・ワンピ（水着NG）</div>
+        </div>
+      </div>
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-4</span>
+        <div class="vlog-title">北海道食い倒れ3日間</div>
+        <div class="vlog-desc">札幌〜小樽〜函館を一人で回る食レポ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>15分</div>
+          <div><strong>想定再生</strong>25,000-40,000</div>
+          <div><strong>切り抜き</strong>8-10本</div>
+          <div><strong>撮影時間</strong>3日</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-5</span>
+        <div class="vlog-title">銭湯巡り3軒はしご</div>
+        <div class="vlog-desc">東京都内ヤバい銭湯3軒／番台インタビューも</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>18,000-30,000</div>
+          <div><strong>切り抜き</strong>6-7本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>手ぬぐい・サ着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-6</span>
+        <div class="vlog-title">スーパー銭湯デート風</div>
+        <div class="vlog-desc">一人で全コース体験／岩盤浴・サウナ・食事処・漫画コーナー</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>25,000-35,000</div>
+          <div><strong>切り抜き</strong>8本</div>
+          <div><strong>撮影時間</strong>6時間</div>
+          <div class="full"><strong>露出</strong>館内着・タオル</div>
+        </div>
+      </div>
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-7</span>
+        <div class="vlog-title">フェス参加vlog</div>
+        <div class="vlog-desc">音楽フェス・撮影OK部分のみ／準備からスタート</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>18,000-30,000</div>
+          <div><strong>切り抜き</strong>7-8本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>フェスファッション</div>
+        </div>
+      </div>
+
+      <div class="vlog-card b">
+        <span class="vlog-id">B-8</span>
+        <div class="vlog-title">ぼっき遊園地・絶叫マシン全制覇</div>
+        <div class="vlog-desc">富士急 or USJで1日／飯・パレード含む</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-13分</div>
+          <div><strong>想定再生</strong>22,000-35,000</div>
+          <div><strong>切り抜き</strong>7-8本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- カテゴリC -->
+  <section id="c" class="c">
+    <h2>🏠 C. 自宅・生活系</h2>
+    <div class="lead">撮影効率重視／1日完結／ルーティン型</div>
+    <div class="vlog-grid">
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-1</span>
+        <span class="vlog-tag tag-killer">運用効率最強</span>
+        <div class="vlog-title">統合vlog・現役エステの帰宅ルーティン</div>
+        <div class="vlog-desc">帰宅→爬虫類→お風呂→漫画→寝る／1本で4要素</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>25,000-40,000</div>
+          <div><strong>切り抜き</strong>8本</div>
+          <div><strong>撮影時間</strong>半日</div>
+          <div class="full"><strong>露出</strong>制服→部屋着→浴衣→パジャマ</div>
+        </div>
+      </div>
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-2</span>
+        <div class="vlog-title">1日密着・平日24時間ノーカット</div>
+        <div class="vlog-desc">起床〜出勤〜サロン業務〜帰宅〜就寝</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>18-22分</div>
+          <div><strong>想定再生</strong>30,000-45,000</div>
+          <div><strong>切り抜き</strong>12-15本</div>
+          <div><strong>撮影時間</strong>丸1日</div>
+          <div class="full"><strong>露出</strong>シーンごと</div>
+        </div>
+      </div>
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-3</span>
+        <div class="vlog-title">1週間ルーティン全記録</div>
+        <div class="vlog-desc">月-日のすべてを圧縮編集／曜日ごと違う表情</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>15分</div>
+          <div><strong>想定再生</strong>22,000-35,000</div>
+          <div><strong>切り抜き</strong>10本</div>
+          <div><strong>撮影時間</strong>1週間</div>
+          <div class="full"><strong>露出</strong>日替わり</div>
+        </div>
+      </div>
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-4</span>
+        <div class="vlog-title">給料日ルーティン</div>
+        <div class="vlog-desc">給料振込→買い物→外食→自分へのご褒美</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>6-7本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-5</span>
+        <div class="vlog-title">サロン明けのご褒美時間</div>
+        <div class="vlog-desc">仕事終わり→外食→お風呂→漫画</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-10分</div>
+          <div><strong>想定再生</strong>15,000-25,000</div>
+          <div><strong>切り抜き</strong>5本</div>
+          <div><strong>撮影時間</strong>半日</div>
+          <div class="full"><strong>露出</strong>部屋着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-6</span>
+        <span class="vlog-tag tag-viral">差別化最大</span>
+        <div class="vlog-title">自宅紹介＋爬虫類ルームツアー</div>
+        <div class="vlog-desc">玄関〜寝室〜爬虫類飼育スペース／「現役エステ×爬虫類×女子」競合ゼロ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>30,000-50,000</div>
+          <div><strong>切り抜き</strong>8-10本</div>
+          <div><strong>撮影時間</strong>4時間</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-7</span>
+        <span class="vlog-tag tag-viral">希少</span>
+        <div class="vlog-title">飲んで帰ってきた日・ほろ酔いお市の夜</div>
+        <div class="vlog-desc">飲み会から帰宅→メイク落とし→風呂→寝る／「酔ったお市」希少シーン</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>25,000-35,000</div>
+          <div><strong>切り抜き</strong>6-8本</div>
+          <div><strong>撮影時間</strong>1晩</div>
+          <div class="full"><strong>露出</strong>部屋着・浴衣</div>
+        </div>
+      </div>
+
+      <div class="vlog-card c">
+        <span class="vlog-id">C-8</span>
+        <div class="vlog-title">休日完全密着・朝起きから寝るまで</div>
+        <div class="vlog-desc">休日の過ごし方／だらだら系</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>22,000-32,000</div>
+          <div><strong>切り抜き</strong>8本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>部屋着・私服</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- カテゴリD -->
+  <section id="d" class="d">
+    <h2>🛀 D. お風呂・寝室系</h2>
+    <div class="lead">匂わせ装置内蔵／方針内ながらフック強</div>
+    <div class="vlog-grid">
+
+      <div class="vlog-card d">
+        <span class="vlog-id">D-1</span>
+        <div class="vlog-title">お風呂編・バスタイム＆寝るまで</div>
+        <div class="vlog-desc">入浴剤紹介→お風呂→スキンケア→寝室</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>25,000-40,000</div>
+          <div><strong>切り抜き</strong>7-8本</div>
+          <div><strong>撮影時間</strong>半日</div>
+          <div class="full"><strong>露出</strong>タオル巻き・浴衣</div>
+        </div>
+      </div>
+
+      <div class="vlog-card d">
+        <span class="vlog-id">D-2</span>
+        <span class="vlog-tag tag-pr">PR動線</span>
+        <div class="vlog-title">入浴剤コレクション10種</div>
+        <div class="vlog-desc">手持ち入浴剤を1個ずつ紹介→使用シーン</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-10分</div>
+          <div><strong>想定再生</strong>15,000-25,000</div>
+          <div><strong>切り抜き</strong>10本</div>
+          <div><strong>撮影時間</strong>3時間</div>
+          <div class="full"><strong>露出</strong>タオル巻き</div>
+        </div>
+      </div>
+
+      <div class="vlog-card d">
+        <span class="vlog-id">D-3</span>
+        <span class="vlog-tag tag-pro">プロ要素</span>
+        <div class="vlog-title">寝る前ルーティン・夜のスキンケア完全版</div>
+        <div class="vlog-desc">洗顔→化粧水→美容液→クリーム→ヘアケア→ベッドへ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>20,000-30,000</div>
+          <div><strong>切り抜き</strong>8本</div>
+          <div><strong>撮影時間</strong>3時間</div>
+          <div class="full"><strong>露出</strong>キャミ・パジャマ</div>
+        </div>
+      </div>
+
+      <div class="vlog-card d">
+        <span class="vlog-id">D-4</span>
+        <div class="vlog-title">パジャマコレクション全部見せ</div>
+        <div class="vlog-desc">パジャマ5-7種紹介＋着用シーン切替</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8分</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>7本</div>
+          <div><strong>撮影時間</strong>3時間</div>
+          <div class="full"><strong>露出</strong>キャミ部屋着パジャマ</div>
+        </div>
+      </div>
+
+      <div class="vlog-card d">
+        <span class="vlog-id">D-5</span>
+        <div class="vlog-title">お風呂で1時間・没頭読書</div>
+        <div class="vlog-desc">お風呂で漫画読みながら長湯／間々で出てスキンケア</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>22,000-35,000</div>
+          <div><strong>切り抜き</strong>6-7本</div>
+          <div><strong>撮影時間</strong>3時間</div>
+          <div class="full"><strong>露出</strong>タオル巻き・浴衣</div>
+        </div>
+      </div>
+
+      <div class="vlog-card d">
+        <span class="vlog-id">D-6</span>
+        <div class="vlog-title">朝シャワー後の準備・出勤前の朝</div>
+        <div class="vlog-desc">朝シャワー→スキンケア→メイク→制服へ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-10分</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>6本</div>
+          <div><strong>撮影時間</strong>朝3時間</div>
+          <div class="full"><strong>露出</strong>キャミ→制服</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- カテゴリE -->
+  <section id="e" class="e">
+    <h2>📚 E. 漫画系</h2>
+    <div class="lead">既ブランド資産「大人漫画好き」を深掘り</div>
+    <div class="vlog-grid">
+
+      <div class="vlog-card e">
+        <span class="vlog-id">E-1</span>
+        <div class="vlog-title">大人漫画100冊棚卸し</div>
+        <div class="vlog-desc">書棚から1冊ずつ紹介／コメント付き</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>15-20分</div>
+          <div><strong>想定再生</strong>25,000-40,000</div>
+          <div><strong>切り抜き</strong>10-15本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>部屋着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card e">
+        <span class="vlog-id">E-2</span>
+        <span class="vlog-tag tag-viral">バズ</span>
+        <div class="vlog-title">漫画一気読み24時間チャレンジ</div>
+        <div class="vlog-desc">徹夜で大人漫画読み続ける／時刻テロップ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>30,000-50,000</div>
+          <div><strong>切り抜き</strong>10本</div>
+          <div><strong>撮影時間</strong>24時間</div>
+          <div class="full"><strong>露出</strong>部屋着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card e">
+        <span class="vlog-id">E-3</span>
+        <div class="vlog-title">漫画書店巡り・秋葉原・池袋ハシゴ買い</div>
+        <div class="vlog-desc">書店を回って大人漫画購入／店内撮影OK部分のみ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>20,000-30,000</div>
+          <div><strong>切り抜き</strong>6-7本</div>
+          <div><strong>撮影時間</strong>半日</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card e">
+        <span class="vlog-id">E-4</span>
+        <span class="vlog-tag tag-easy">連載</span>
+        <div class="vlog-title">お市の今夜の一冊・月1連載</div>
+        <div class="vlog-desc">毎月1冊深掘りレビュー</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-10分/本</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>4-5本/本</div>
+          <div><strong>撮影時間</strong>3時間/本</div>
+          <div class="full"><strong>露出</strong>部屋着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card e">
+        <span class="vlog-id">E-5</span>
+        <div class="vlog-title">漫画喫茶48時間・住んでみた</div>
+        <div class="vlog-desc">漫画喫茶に48時間住む／カプセル個室</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>15-18分</div>
+          <div><strong>想定再生</strong>30,000-45,000</div>
+          <div><strong>切り抜き</strong>12本</div>
+          <div><strong>撮影時間</strong>48時間</div>
+          <div class="full"><strong>露出</strong>私服・部屋着</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- カテゴリF -->
+  <section id="f" class="f">
+    <h2>🧪 F. 検証・チャレンジ系</h2>
+    <div class="lead">バズ要素強／PR動線あり／本数稼ぎは厳しいが当たれば大きい</div>
+    <div class="vlog-grid">
+
+      <div class="vlog-card f">
+        <span class="vlog-id">F-1</span>
+        <span class="vlog-tag tag-pr">PR動線</span>
+        <span class="vlog-tag tag-pro">プロ要素</span>
+        <div class="vlog-title">家庭用脱毛器1ヶ月毎日チャレンジ</div>
+        <div class="vlog-desc">30日間自分の腕で検証／週1経過写真</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>25,000-40,000</div>
+          <div><strong>切り抜き</strong>8本</div>
+          <div><strong>撮影時間</strong>30日分散</div>
+          <div class="full"><strong>露出</strong>キャミ・腕公開</div>
+        </div>
+      </div>
+
+      <div class="vlog-card f">
+        <span class="vlog-id">F-2</span>
+        <span class="vlog-tag tag-pr">PR動線</span>
+        <div class="vlog-title">韓国コスメ1ヶ月縛り・肌が変わる？</div>
+        <div class="vlog-desc">韓国コスメだけで1ヶ月スキンケア／ビフォーアフター</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>22,000-35,000</div>
+          <div><strong>切り抜き</strong>7-8本</div>
+          <div><strong>撮影時間</strong>1ヶ月分散</div>
+          <div class="full"><strong>露出</strong>すっぴん〜メイク</div>
+        </div>
+      </div>
+
+      <div class="vlog-card f">
+        <span class="vlog-id">F-3</span>
+        <div class="vlog-title">美容鍼1ヶ月通った変化レポ</div>
+        <div class="vlog-desc">週1で美容鍼通院／変化を顔写真で記録</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>6本</div>
+          <div><strong>撮影時間</strong>1ヶ月</div>
+          <div class="full"><strong>露出</strong>施術中・私服</div>
+        </div>
+      </div>
+
+      <div class="vlog-card f">
+        <span class="vlog-id">F-4</span>
+        <span class="vlog-tag tag-pr">PR動線</span>
+        <div class="vlog-title">プチプラvsデパコス30日比較</div>
+        <div class="vlog-desc">左顔プチプラ／右顔デパコス／30日後比較</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>12-15分</div>
+          <div><strong>想定再生</strong>22,000-35,000</div>
+          <div><strong>切り抜き</strong>8本</div>
+          <div><strong>撮影時間</strong>30日分散</div>
+          <div class="full"><strong>露出</strong>すっぴん中心</div>
+        </div>
+      </div>
+
+      <div class="vlog-card f">
+        <span class="vlog-id">F-5</span>
+        <div class="vlog-title">1週間ノーメイク生活</div>
+        <div class="vlog-desc">すっぴんで1週間出社・買い物etc／変化記録</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>20,000-32,000</div>
+          <div><strong>切り抜き</strong>7本</div>
+          <div><strong>撮影時間</strong>1週間</div>
+          <div class="full"><strong>露出</strong>すっぴん終始</div>
+        </div>
+      </div>
+
+      <div class="vlog-card f">
+        <span class="vlog-id">F-6</span>
+        <span class="vlog-tag tag-viral">バズMAX</span>
+        <div class="vlog-title">マッチアプリ3ヶ月企画</div>
+        <div class="vlog-desc">マッチアプリ登録→デート（顔モザイク）→結果報告</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>15-18分</div>
+          <div><strong>想定再生</strong>30,000-50,000</div>
+          <div><strong>切り抜き</strong>10本</div>
+          <div><strong>撮影時間</strong>3ヶ月</div>
+          <div class="full"><strong>露出</strong>私服デート</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- カテゴリG -->
+  <section id="g" class="g">
+    <h2>🎄 G. 季節・イベント系</h2>
+    <div class="lead">時期限定／季節バズ狙い</div>
+    <div class="vlog-grid">
+
+      <div class="vlog-card g">
+        <span class="vlog-id">G-1</span>
+        <span class="vlog-tag tag-season">12月限定</span>
+        <div class="vlog-title">一人クリスマス・ぼっきイブ</div>
+        <div class="vlog-desc">12/24準備→ケーキ買い→自宅でぼっきパーティ</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>25,000-40,000</div>
+          <div><strong>切り抜き</strong>6-7本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>私服・部屋着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card g">
+        <span class="vlog-id">G-2</span>
+        <span class="vlog-tag tag-season">3-4月限定</span>
+        <div class="vlog-title">一人花見・桜の下でピクニック</div>
+        <div class="vlog-desc">弁当持って花見会場へ／周りはカップル</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-10分</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>5本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>春コーデ</div>
+        </div>
+      </div>
+
+      <div class="vlog-card g">
+        <span class="vlog-id">G-3</span>
+        <span class="vlog-tag tag-season">12/31</span>
+        <div class="vlog-title">大晦日・一人で年越し記録</div>
+        <div class="vlog-desc">紅白見ながら年越しそば／元旦の準備</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>10-12分</div>
+          <div><strong>想定再生</strong>22,000-35,000</div>
+          <div><strong>切り抜き</strong>6本</div>
+          <div><strong>撮影時間</strong>1日</div>
+          <div class="full"><strong>露出</strong>部屋着</div>
+        </div>
+      </div>
+
+      <div class="vlog-card g">
+        <span class="vlog-id">G-4</span>
+        <span class="vlog-tag tag-season">2月限定</span>
+        <div class="vlog-title">一人バレンタイン・自分にチョコ買う日</div>
+        <div class="vlog-desc">高級チョコ買い物→自宅で食べる</div>
+        <div class="vlog-specs">
+          <div><strong>尺</strong>8-10分</div>
+          <div><strong>想定再生</strong>18,000-28,000</div>
+          <div><strong>切り抜き</strong>5本</div>
+          <div><strong>撮影時間</strong>半日</div>
+          <div class="full"><strong>露出</strong>私服</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- マトリクス -->
+  <div class="matrix-section">
+    <h2>📊 全30本 運用マトリクス</h2>
+    <table>
+      <thead>
+        <tr><th>カテゴリ</th><th>本数</th><th>平均撮影時間</th><th>平均切り抜き素材</th><th>推奨実施頻度</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>A. ぼっき体験系</td><td>8</td><td>半日-1日</td><td>5-7本</td><td>月1-2本</td></tr>
+        <tr><td>B. 旅行・場所系</td><td>8</td><td>1日-3日</td><td>7-12本</td><td>月1本</td></tr>
+        <tr><td>C. 自宅・生活系</td><td>8</td><td>半日-1日</td><td>6-10本</td><td>月2本</td></tr>
+        <tr><td>D. お風呂・寝室系</td><td>6</td><td>3時間-半日</td><td>6-8本</td><td>月1本</td></tr>
+        <tr><td>E. 漫画系</td><td>5</td><td>3時間-24時間</td><td>5-15本</td><td>月1本</td></tr>
+        <tr><td>F. 検証チャレンジ系</td><td>6</td><td>1ヶ月分散</td><td>6-10本</td><td>隔月1本</td></tr>
+        <tr><td>G. 季節イベント系</td><td>4</td><td>半日-1日</td><td>5-7本</td><td>該当時期</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 実装のコツ -->
+  <div class="tips">
+    <h2>💡 実装の知恵</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <strong>📦 撮影効率化のコツ</strong>
+        <p>1日にカテゴリAやCを2本まとめ撮り／衣装替え数回で2-3本分撮れる／旅行系は1回で2-3本生成可能</p>
+      </div>
+      <div class="tip-card">
+        <strong>✂️ 切り抜き運用前提</strong>
+        <p>各シーン頭2秒でフックワード（「えっ…」「ヤバい…」）／転換点を意識／顔アップと引きを複数撮る</p>
+      </div>
+      <div class="tip-card">
+        <strong>📅 季節物は前倒し</strong>
+        <p>季節カテゴリは3ヶ月前から仕込み／撮影してストック化／発信タイミングだけ調整</p>
+      </div>
+      <div class="tip-card">
+        <strong>🎬 サムネ素材も同時確保</strong>
+        <p>撮影中に表情カット3パターン（驚き／ニヤッ／困惑）／サムネ用ポーズも忘れず</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<a href="#" class="back-to-top">↑</a>
+
+</body>
+</html>
