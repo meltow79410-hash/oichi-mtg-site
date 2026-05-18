@@ -2,1183 +2,465 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<title>vlog企画TOP5 選定の思考メモ（詳細版）</title>
+<title>vlog企画TOP5 選定の思考メモ</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
     background: #f5f5f7;
     color: #1d1d1f;
-    line-height: 1.8;
+    line-height: 1.7;
   }
   .header {
     background: linear-gradient(135deg, #2c3e50, #4a90e2);
     color: white;
-    padding: 56px 20px;
+    padding: 48px 20px;
     text-align: center;
   }
   .header h1 { font-size: 28px; margin-bottom: 8px; }
   .header p { font-size: 14px; opacity: 0.9; }
-  .header .meta {
-    margin-top: 16px;
-    display: inline-flex;
-    gap: 16px;
-    background: rgba(255,255,255,0.2);
-    padding: 8px 20px;
-    border-radius: 20px;
-    font-size: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .container { max-width: 920px; margin: 0 auto; padding: 48px 20px; }
-
-  .toc {
-    background: white;
-    border-radius: 16px;
-    padding: 24px;
-    margin-bottom: 32px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-  }
-  .toc h2 { font-size: 17px; margin-bottom: 14px; }
-  .toc-list { list-style: none; padding: 0; }
-  .toc-list li {
-    padding: 8px 12px;
-    margin-bottom: 4px;
-    border-radius: 6px;
-    transition: all 0.2s;
-  }
-  .toc-list li:hover { background: #f0f0f5; }
-  .toc-list a {
-    color: #1d1d1f;
-    text-decoration: none;
-    font-size: 13px;
-    display: block;
-  }
+  .container { max-width: 900px; margin: 0 auto; padding: 48px 20px; }
 
   section {
     background: white;
     border-radius: 16px;
-    padding: 36px;
+    padding: 32px;
     margin-bottom: 24px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-    scroll-margin-top: 20px;
   }
   section h2 {
     font-size: 22px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
     padding-bottom: 12px;
     border-bottom: 3px solid #4a90e2;
   }
-  section .lead {
-    color: #86868b;
-    font-size: 13px;
-    margin-bottom: 20px;
-  }
   section h3 {
     font-size: 17px;
-    margin: 28px 0 12px;
+    margin: 24px 0 10px;
     color: #2c3e50;
-    padding-left: 12px;
-    border-left: 4px solid #4a90e2;
-  }
-  section h4 {
-    font-size: 14px;
-    margin: 18px 0 8px;
-    color: #1d1d1f;
   }
   section p { margin-bottom: 12px; font-size: 14px; }
-  section ul, section ol { padding-left: 22px; margin-bottom: 12px; }
-  section li { font-size: 14px; padding: 4px 0; }
-  section strong { color: #1d1d1f; font-weight: bold; }
+  section ul { padding-left: 20px; margin-bottom: 12px; }
+  section li { font-size: 14px; padding: 3px 0; }
+  section strong { color: #1d1d1f; }
 
-  .data-box {
+  .premise-box {
     background: linear-gradient(135deg, #fef9e7, #fff);
     border-left: 6px solid #f5a623;
-    padding: 18px 24px;
+    padding: 20px 24px;
     border-radius: 8px;
-    margin: 14px 0;
-    font-size: 13px;
+    margin: 16px 0;
   }
-  .data-box strong { color: #c44569; }
+  .premise-box strong { display: block; margin-bottom: 8px; font-size: 15px; }
+  .premise-box p { font-size: 14px; margin: 0; }
 
-  .insight-box {
-    background: linear-gradient(135deg, #e0f2ff, #fff);
-    border-left: 6px solid #4a90e2;
-    padding: 18px 24px;
-    border-radius: 8px;
-    margin: 14px 0;
-    font-size: 13px;
+  .axis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin: 16px 0;
   }
-  .insight-box strong { color: #2c3e50; }
-
-  .warning-box {
-    background: linear-gradient(135deg, #ffe5ec, #fff);
-    border-left: 6px solid #e74c3c;
-    padding: 18px 24px;
-    border-radius: 8px;
-    margin: 14px 0;
-    font-size: 13px;
+  .axis-card {
+    background: #f9f9fb;
+    padding: 16px;
+    border-radius: 10px;
+    border-top: 4px solid;
   }
-  .warning-box strong { color: #c0392b; }
+  .axis-card.a1 { border-color: #ff6b9d; }
+  .axis-card.a2 { border-color: #4a90e2; }
+  .axis-card.a3 { border-color: #50c878; }
+  .axis-card.a4 { border-color: #f5a623; }
+  .axis-card.a5 { border-color: #9b59b6; }
+  .axis-card h4 { font-size: 13px; margin-bottom: 6px; }
+  .axis-card p { font-size: 12px; color: #424245; margin: 0; line-height: 1.5; }
 
   .pick-block {
     background: #f9f9fb;
     border-radius: 16px;
-    padding: 32px;
-    margin: 24px 0;
-    border-left: 8px solid #ff6b9d;
+    padding: 28px;
+    margin: 20px 0;
+    border-left: 6px solid #ff6b9d;
   }
-  .pick-block.p2 { border-color: #4a90e2; }
-  .pick-block.p3 { border-color: #50c878; }
-  .pick-block.p4 { border-color: #9b59b6; }
-  .pick-block.p5 { border-color: #f5a623; }
   .pick-rank {
     display: inline-block;
     font-size: 18px;
     font-weight: bold;
-    padding: 6px 18px;
+    padding: 6px 16px;
     background: linear-gradient(135deg, #ff6b9d, #c44569);
     color: white;
     border-radius: 20px;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
   }
-  .pick-block.p2 .pick-rank { background: linear-gradient(135deg, #4a90e2, #2c3e50); }
-  .pick-block.p3 .pick-rank { background: linear-gradient(135deg, #50c878, #16a085); }
-  .pick-block.p4 .pick-rank { background: linear-gradient(135deg, #9b59b6, #6c3483); }
-  .pick-block.p5 .pick-rank { background: linear-gradient(135deg, #f5a623, #e67e22); }
   .pick-block h3 {
-    font-size: 20px;
-    margin: 8px 0 8px;
+    font-size: 19px;
+    margin: 8px 0 16px;
     color: #1d1d1f;
-    border: none;
-    padding: 0;
   }
-  .pick-tagline {
-    font-size: 13px;
-    color: #86868b;
-    margin-bottom: 20px;
-    font-style: italic;
-  }
-  .reasoning-section {
+  .reasoning-list {
     background: white;
     border-radius: 10px;
-    padding: 20px 24px;
-    margin-top: 14px;
+    padding: 16px 24px;
+    margin-top: 12px;
   }
-  .reasoning-section h4 {
+  .reasoning-list h4 {
     font-size: 14px;
     color: #4a90e2;
-    margin: 0 0 10px 0;
-    padding-bottom: 6px;
-    border-bottom: 1px dashed #c7c7cc;
+    margin-bottom: 8px;
+    margin-top: 16px;
   }
-  .reasoning-section h4:first-child { margin-top: 0; }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 12px;
-    margin: 12px 0;
-  }
-  thead { background: #f5f5f7; }
-  th, td {
-    padding: 9px 8px;
-    text-align: left;
-    border-bottom: 1px solid #e5e5ea;
-    vertical-align: top;
-  }
-  th { font-weight: bold; font-size: 11px; }
-
-  .score-bar {
-    display: inline-block;
-    width: 80px;
-    color: #f5a623;
-    font-size: 14px;
-    letter-spacing: 2px;
-  }
+  .reasoning-list h4:first-child { margin-top: 0; }
+  .reasoning-list ul { padding-left: 18px; margin-bottom: 8px; }
+  .reasoning-list li { font-size: 13px; padding: 3px 0; line-height: 1.6; }
 
   .citation {
     display: inline-block;
-    background: #e74c3c;
+    background: #4a90e2;
     color: white;
     padding: 1px 8px;
     border-radius: 6px;
-    font-size: 10px;
-    margin: 0 2px;
+    font-size: 11px;
+    margin-left: 4px;
     font-weight: bold;
-    vertical-align: middle;
   }
-  .citation-data { background: #4a90e2; }
-  .citation-user { background: #50c878; }
-  .citation-strategy { background: #9b59b6; }
 
   .nottaken {
     background: #ffe5ec;
     border-left: 4px solid #e74c3c;
-    padding: 18px 22px;
+    padding: 16px 20px;
     border-radius: 8px;
-    margin: 14px 0;
+    margin: 12px 0;
   }
   .nottaken strong { display: block; margin-bottom: 6px; font-size: 14px; color: #c0392b; }
-  .nottaken p { font-size: 13px; color: #424245; margin-bottom: 6px; }
-  .nottaken .factor { font-size: 11px; color: #86868b; display: block; margin-top: 4px; }
+  .nottaken p { font-size: 13px; color: #424245; margin: 0; }
 
   .conclusion {
     background: linear-gradient(135deg, #2c3e50, #4a90e2);
     color: white;
-    padding: 40px;
+    padding: 32px;
     border-radius: 16px;
     margin-top: 32px;
   }
-  .conclusion h2 { color: white; border: none; padding: 0; }
+  .conclusion h2 { color: white; border: none; }
   .conclusion p { font-size: 15px; line-height: 1.9; }
   .conclusion strong { color: #f5a623; }
 
-  .tradeoff {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin: 14px 0;
-  }
-  .tradeoff-card {
-    padding: 14px 18px;
-    border-radius: 10px;
+  table {
+    width: 100%;
+    border-collapse: collapse;
     font-size: 13px;
+    margin: 12px 0;
   }
-  .tradeoff-card.pro { background: #e8f5e9; border-left: 4px solid #50c878; }
-  .tradeoff-card.con { background: #ffe5ec; border-left: 4px solid #e74c3c; }
-  .tradeoff-card strong { display: block; margin-bottom: 6px; }
-
-  .formula {
-    background: #2c3e50;
-    color: #f5a623;
-    padding: 16px 22px;
-    border-radius: 10px;
-    font-family: "SF Mono", Menlo, monospace;
-    font-size: 13px;
-    margin: 14px 0;
-    line-height: 1.8;
+  thead { background: #f5f5f7; }
+  th, td {
+    padding: 10px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e5e5ea;
   }
-
-  .timeline-step {
-    display: flex;
-    gap: 14px;
-    align-items: flex-start;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f5;
-  }
-  .timeline-num {
-    flex: 0 0 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #4a90e2, #2c3e50);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    font-size: 14px;
-  }
-  .timeline-content { flex: 1; font-size: 13px; }
-  .timeline-content strong { display: block; margin-bottom: 4px; font-size: 14px; }
-
-  .back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    background: linear-gradient(135deg, #4a90e2, #2c3e50);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-    box-shadow: 0 4px 12px rgba(74,144,226,0.3);
-    font-size: 20px;
-    z-index: 999;
-  }
+  th { font-size: 12px; }
 </style>
 </head>
 <body>
 
 <div class="header">
-  <h1>🧠 vlog企画TOP5 選定の思考メモ（詳細版）</h1>
-  <p>分析の裏側・トレードオフ・代替案検討までフル開示</p>
-  <div class="meta">
-    <span>📊 過去動画12本データ分析</span>
-    <span>🎯 5軸スコアリング</span>
-    <span>⚖️ トレードオフ検討</span>
-    <span>🔍 代替案分析</span>
-  </div>
+  <h1>🧠 vlog企画TOP5 選定の思考メモ</h1>
+  <p>なぜこの5本を最優先にしたのか／分析の裏側を全部見せる</p>
 </div>
 
 <div class="container">
 
-  <!-- 目次 -->
-  <div class="toc">
-    <h2>📑 目次</h2>
-    <ul class="toc-list">
-      <li><a href="#context">▶ 1. 思考のスタート地点（戦略コンテキスト）</a></li>
-      <li><a href="#constraints">▶ 2. 制約条件の整理</a></li>
-      <li><a href="#data">▶ 3. データ分析から導出した法則</a></li>
-      <li><a href="#axes">▶ 4. 5軸スコアリングの設計理由</a></li>
-      <li><a href="#filter">▶ 5. 30本から5本への絞り込みプロセス</a></li>
-      <li><a href="#pick1">▶ 6. 🥇 1位選定の深掘り</a></li>
-      <li><a href="#pick2">▶ 7. 🥈 2位選定の深掘り</a></li>
-      <li><a href="#pick3">▶ 8. 🥉 3位選定の深掘り</a></li>
-      <li><a href="#pick4">▶ 9. 4️⃣ 4位選定の深掘り</a></li>
-      <li><a href="#pick5">▶ 10. 5️⃣ 5位選定の深掘り</a></li>
-      <li><a href="#nottaken">▶ 11. 選ばなかった企画と理由</a></li>
-      <li><a href="#portfolio">▶ 12. ポートフォリオ全体設計</a></li>
-      <li><a href="#risk">▶ 13. 想定リスクと対策</a></li>
-      <li><a href="#conclusion">▶ 14. 結論：選定の核心</a></li>
-    </ul>
-  </div>
+  <!-- 大前提 -->
+  <section>
+    <h2>📌 大前提：思考のスタート地点</h2>
 
-  <!-- 1. 戦略コンテキスト -->
-  <section id="context">
-    <h2>1. 思考のスタート地点（戦略コンテキスト）</h2>
-    <div class="lead">なぜ「vlog企画TOP5」を選ぶ必要があったのか</div>
-
-    <h3>1-1. ユーザーから提示された戦略フェーズ</h3>
-    <p>本企画着手の直接的な背景は、ユーザーから以下の方針提示があったこと：</p>
-
-    <div class="data-box">
-      <strong>📌 ユーザー方針（直接引用）<span class="citation citation-user">本人意向</span></strong><br>
-      ①ASMRチャンネルの立ち上げ ②コラボ系企画&編集 ③現在のお市のYoutube<br>
-      の優先順位で進めていく。<br><br>
-      理由として、<b>vlog系が当たる可能性がASMRより低い（コンセプトを作りきれてない）のと、撮影的に本数の確保が難しい</b>。<br>
-      とはいえ、<b>切り抜きで回したり、エロ漫画系、サウナのような露出があるvlogは検証したいので、いざという時取れるように粒度高めで企画の作成</b>。
-    </p>
+    <div class="premise-box">
+      <strong>① 戦略フェーズ：vlog系は「ASMR・コラボの裏」のサブ優先</strong>
+      <p>ASMRチャンネル立ち上げ＋コラボ系編集が最優先。vlog系は「いざという時取れる粒度」＝<b>即実行可能性＋既ヒット軸の派生</b>を重視。</p>
     </div>
 
-    <h3>1-2. この方針から読み取った"見えない要件"</h3>
-    <p>表面上は「予備ストック作成」だが、深く読むと以下の含意がある：</p>
-    <ol>
-      <li><b>「いざという時取れる」＝撮影実行可能性が最重要評価軸</b>になる（コスト・時間・小道具のハードル低い順）</li>
-      <li><b>「粒度高め」＝撮影前に台本ベースで動ける詳細さが必要</b>（タイトルだけではダメ、シーン構成・セリフ案レベルまで）</li>
-      <li><b>「切り抜きで回したり」＝1本撮影で複数素材生成可能な設計</b>が暗黙の要件</li>
-      <li><b>「エロ漫画系、サウナのような露出があるvlogは検証したい」＝既ヒット軸（サウナ32,383）の派生と漫画ブランドの活用</b>が優先</li>
-    </ol>
-
-    <h3>1-3. 表面的なTOP5ではなく「戦略意図に応えるTOP5」を設計</h3>
-    <p>単に「再生数が伸びそうな企画」を順番に並べるのではなく、<b>戦略意図（撮影しやすい・切り抜き効率高い・既ヒット派生・方針内）に応える5本</b>を選ぶ必要があった。</p>
-    <p>→ そのため、純粋なバズ可能性なら6位だった「ぼっき温泉旅」を外し、撮影可能性が高い「ぼっきサウナvol.2」を1位に置いた。これは戦略意図の優先順位反映。</p>
-  </section>
-
-  <!-- 2. 制約条件 -->
-  <section id="constraints">
-    <h2>2. 制約条件の整理</h2>
-    <div class="lead">何ができないか、何をしてはいけないか</div>
-
-    <h3>2-1. 露出ライン制約</h3>
-    <div class="warning-box">
-      <strong>絶対NGライン<span class="citation citation-user">本人意向</span></strong>
-      <ul>
-        <li>下着姿になる（一般的なセクシーアカウントのトレンド）</li>
-        <li>ローター散歩のような直接的性的アピール</li>
-        <li>裸・半裸シーン</li>
-      </ul>
-      <strong>OKライン</strong>
-      <ul>
-        <li>キャミソール</li>
-        <li>短パン</li>
-        <li>浴衣・パジャマ</li>
-        <li>サ着・タオル巻き（お風呂シーン）</li>
-        <li>湯気越し・後ろ姿等の演出</li>
-      </ul>
+    <div class="premise-box">
+      <strong>② 現状の数値：6,240登録／12本／月3,900登録ペース／いいね率1.78%</strong>
+      <p>ファン濃度は業界トップ。だが本数12本では同期競合（大人漫画部247本）に量で劣勢。<b>1本撮影で複数素材を生み出す効率重視</b>。</p>
     </div>
 
-    <h3>2-2. ブランディング制約</h3>
-    <p>方針文：「<b>あくまで個人コンテンツクリエイターと美容脱毛を前面に押し出す</b>」<span class="citation citation-user">本人意向</span></p>
-    <p>→ これにより以下の企画タイプが除外される：</p>
-    <ul>
-      <li>グラビア寄り（水着・セクシー衣装メインの撮影）</li>
-      <li>純粋なアダルト寄り（性的なロープレ・直接的シチュエーション）</li>
-      <li>ナンパ系・出会い系のリアル動画（個人クリエイター像と乖離）</li>
-    </ul>
-
-    <h3>2-3. 物理的・時間的制約</h3>
-    <p>「撮影的に本数の確保が難しい」という現状認識から、以下も評価軸に組み込んだ：</p>
-    <ul>
-      <li><b>1日完結可能か</b>（複数日拘束は減点）</li>
-      <li><b>自宅で撮れるか</b>（ロケ必要は減点）</li>
-      <li><b>必要小道具が手元にあるか</b>（特殊機材必要は減点）</li>
-      <li><b>共演者不要か</b>（コラボ系とは別軸のため）</li>
-    </ul>
-
-    <h3>2-4. プラットフォーム制約</h3>
-    <p>YouTube規約・収益化条件も考慮：</p>
-    <ul>
-      <li>YouTube規約違反（直接的性表現）NG</li>
-      <li>収益化対象として「広告主にやさしいコンテンツ」設計</li>
-      <li>つまり<b>「匂わせ」までで止める＝視聴者の脳内補完に委ねる</b></li>
-    </ul>
-  </section>
-
-  <!-- 3. データ分析 -->
-  <section id="data">
-    <h2>3. データ分析から導出した法則</h2>
-    <div class="lead">過去12本のパフォーマンスから何が分かったか</div>
-
-    <h3>3-1. 既ヒット動画の数値ファクト</h3>
-    <table>
-      <thead><tr><th>動画</th><th>尺</th><th>再生</th><th>いいね率</th><th>分類</th></tr></thead>
-      <tbody>
-        <tr><td>ぼっちサウナ</td><td>7:28</td><td><b>32,383</b></td><td>2.12%</td><td>キラー</td></tr>
-        <tr><td>漫画3選</td><td>8:21</td><td>17,579</td><td>1.15%</td><td>上振れ</td></tr>
-        <tr><td>みんなさん</td><td>0:14</td><td>14,876</td><td>1.05%</td><td>Shorts</td></tr>
-        <tr><td>待って気づいた</td><td>0:13</td><td>14,340</td><td>2.36%</td><td>Shorts</td></tr>
-        <tr><td>緊急で</td><td>0:11</td><td>12,596</td><td>1.33%</td><td>Shorts</td></tr>
-        <tr><td>●知識</td><td>10:09</td><td>10,434</td><td>1.97%</td><td>語り</td></tr>
-        <tr><td>チンアナゴ</td><td>6:28</td><td>9,877</td><td>1.71%</td><td>ぼっきvlog</td></tr>
-        <tr><td>NGなしQ&A</td><td>2:45</td><td>6,141</td><td>1.45%</td><td>下振れ</td></tr>
-        <tr><td>ご報告（犬）</td><td>4:52</td><td>4,324</td><td>2.57%</td><td>キャラ深掘り</td></tr>
-      </tbody>
-    </table>
-
-    <h3>3-2. 法則A：「ぼっき体験Vlog」が圧倒的キラー</h3>
-    <div class="insight-box">
-      <strong>数値根拠</strong>
-      <ul>
-        <li>ぼっきサウナ：32,383再生（チャンネル最大）</li>
-        <li>チンアナゴ：9,877再生（ぼっきvlog第2弾）</li>
-        <li>ぼっきvlog平均：<b>21,130再生</b>（他ジャンル平均の3倍以上）</li>
-      </ul>
-      <strong>結論</strong>
-      <p>「ぼっちで○○する」型は <b>確立済み勝ちパターン</b>。これを起点に企画派生を最大化すべき。</p>
+    <div class="premise-box">
+      <strong>③ ブランディング制約：露出はキャミ＋短パンまで／エロ安売りNG</strong>
+      <p>方針外（ローター散歩・下着姿等）は最初から除外。<b>匂わせ装置はOK</b>だが、露出ライン超えは厳禁。</p>
     </div>
 
-    <h3>3-3. 法則B：7-10分尺が最強</h3>
-    <p>尺別の平均再生：</p>
-    <table>
-      <thead><tr><th>尺カテゴリ</th><th>本数</th><th>平均再生</th></tr></thead>
-      <tbody>
-        <tr><td>中尺Vlog/語り（4-10分）</td><td>5</td><td><b>14,939</b></td></tr>
-        <tr><td>短尺ショート（11-14秒）</td><td>3</td><td>13,937</td></tr>
-        <tr><td>新型ショート（9-23秒）</td><td>3</td><td>827</td></tr>
-        <tr><td>短尺語り（2-3分）</td><td>1</td><td>6,141</td></tr>
-      </tbody>
-    </table>
-    <div class="insight-box">
-      <strong>意味すること</strong><br>
-      vlog本編は<b>7-10分の中尺に絞るべき</b>。長すぎず短すぎず、視聴維持率と再生数の両立点。<br>
-      → TOP5全企画でこの尺帯を採用。
+    <div class="premise-box">
+      <strong>④ 既ヒットの法則：「ぼっき体験Vlog」が圧倒的キラー</strong>
+      <p>ぼっきサウナ32,383再生／チンアナゴ9,877。<b>「ぼっちで〇〇する」型は確立済み勝ちパターン</b>。これを起点に派生を最大化する設計。</p>
     </div>
-
-    <h3>3-4. 法則C：匂わせワードがCTRを上げる</h3>
-    <p>タイトル別比較：</p>
-    <ul>
-      <li>「ぼっちでサウナに行ったら<b>大量に出ました</b>」→ 32,383 ◎</li>
-      <li>「現役美容エステティシャンが<b>●知識</b>に着いて語ってみた」→ 10,434 ○</li>
-      <li>「【お待たせ】<b>NGなし</b>で脱毛エステティシャンが質問に答えていく」→ 6,141 △</li>
-    </ul>
-    <p>「大量に」「●知識」「NGなし」などの<b>匂わせワード</b>はCTRに直接影響。TOP5全企画のタイトル設計に反映。</p>
-
-    <h3>3-5. 法則D：キャラ深掘り型はファン化に効く</h3>
-    <p>ご報告動画（家族が増えました）は再生数こそ4,324と少ないが、<b>いいね率2.57%（過去最高クラス）・コメント率0.37%</b>。これは<b>「お市の個人を見たい層の濃さ」</b>を示す。</p>
-    <p>→ 自宅紹介＋爬虫類（2位）はこの法則の延長線。再生数より「キャラ深掘り＋ファン化」を重視した配置。</p>
-
-    <h3>3-6. 法則E：質問BOXは形式問わず弱い</h3>
-    <p>NGなしQ&A（2:45 / 6,141再生 / いいね率1.45%）は<b>vlog平均より下振れ</b>。理由分析：</p>
-    <ul>
-      <li>尺が短すぎる（2分台は中途半端）</li>
-      <li>説明的タイトル（匂わせ弱い）</li>
-      <li>編集が静的（動きが少ない）</li>
-    </ul>
-    <p>→ vlog系TOP5には質問BOX型を入れない判断。動的な体験系・実演系を優先。</p>
   </section>
 
-  <!-- 4. 評価軸 -->
-  <section id="axes">
-    <h2>4. 5軸スコアリングの設計理由</h2>
-    <div class="lead">なぜこの5軸で評価したのか</div>
+  <!-- 評価軸 -->
+  <section>
+    <h2>🎯 評価軸：何を基準に並べたか</h2>
+    <p>vlog企画30本から5本を選ぶにあたり、以下5軸でスコアリング。</p>
 
-    <h3>4-1. 軸設計の前提</h3>
-    <p>30本から5本を選ぶには客観的なスコアリングが必要。だが「再生数想定」だけでは不十分。<b>戦略意図（撮影可能性・切り抜き効率）も組み込んだ複合評価</b>が必要。</p>
-
-    <h3>4-2. 各軸の意味と設定理由</h3>
-
-    <h4>① 既ヒット連動性</h4>
-    <p><b>なぜ軸に入れたか</b>：過去ヒットの数値証明は「最低再生保証」。新規企画より確度が桁違いに高い。「いざという時取れる」要件と完全マッチ。</p>
-    <p><b>採点基準</b>：</p>
-    <ul>
-      <li>★★★★★：既ヒット動画の直接続編／同フォーマット派生</li>
-      <li>★★★★☆：既ヒット軸の派生（ぼっき軸など）</li>
-      <li>★★★☆☆：類似ジャンル既存</li>
-      <li>★★☆☆☆：弱い関連性</li>
-      <li>★☆☆☆☆：完全新規</li>
-    </ul>
-
-    <h4>② バズ可能性</h4>
-    <p><b>なぜ軸に入れたか</b>：単発バズはチャンネル全体の知名度を引き上げる「砲弾」。確実な再生数とは別軸で必要。</p>
-    <p><b>採点基準</b>：</p>
-    <ul>
-      <li>★★★★★：1秒で説明可能なフック／強烈な意外性</li>
-      <li>★★★★☆：話題性ある要素／拡散性高</li>
-      <li>★★★☆☆：標準的な拡散性</li>
-      <li>★★☆☆☆：拡散性弱め</li>
-      <li>★☆☆☆☆：定常型・拡散性なし</li>
-    </ul>
-
-    <h4>③ 差別化最大度</h4>
-    <p><b>なぜ軸に入れたか</b>：競合と同質化すると埋もれる。お市の独占ポジション（職業権威×匂わせ）を深める企画は中長期で効く。</p>
-    <p><b>採点基準</b>：</p>
-    <ul>
-      <li>★★★★★：競合圏内に類似企画ほぼゼロ／完全独占</li>
-      <li>★★★★☆：類似は少数／本人キャラで差別化可</li>
-      <li>★★★☆☆：類似多数だが演出で差別化</li>
-      <li>★★☆☆☆：標準的</li>
-      <li>★☆☆☆☆：完全な後追い</li>
-    </ul>
-
-    <h4>④ 切り抜き素材効率</h4>
-    <p><b>なぜ軸に入れたか</b>：ユーザーが「切り抜きで回したい」と明言。1本撮影でIG・TikTok複数本生成できる企画ほど投稿頻度問題（最大の弱点）の解決に直結。</p>
-    <p><b>採点基準</b>：</p>
-    <ul>
-      <li>★★★★★：10本以上の切り抜き素材生成可能</li>
-      <li>★★★★☆：6-9本生成可能</li>
-      <li>★★★☆☆：4-5本生成可能</li>
-      <li>★★☆☆☆：2-3本生成可能</li>
-      <li>★☆☆☆☆：1本のみ</li>
-    </ul>
-
-    <h4>⑤ 撮影実行可能性</h4>
-    <p><b>なぜ軸に入れたか</b>：本数確保が課題の現状で、撮影ハードル高い企画は塩漬けになる。「いざという時取れる」要件の核心。</p>
-    <p><b>採点基準</b>：</p>
-    <ul>
-      <li>★★★★★：半日・自宅完結・小道具手元あり</li>
-      <li>★★★★☆：1日完結・近場ロケ</li>
-      <li>★★★☆☆：1日・遠方ロケ可能</li>
-      <li>★★☆☆☆：1泊2日・予算必要</li>
-      <li>★☆☆☆☆：複数日・高予算・準備期間長</li>
-    </ul>
-
-    <h3>4-3. 軸の重み付け</h3>
-    <p>5軸を均等にせず、戦略意図に応じた重み付けを内部的に適用：</p>
-    <div class="formula">
-      総合スコア = (①既ヒット × 1.2) + (②バズ × 1.0) + (③差別化 × 0.9) + (④切り抜き × 1.1) + (⑤実行可能性 × 1.3)
+    <div class="axis-grid">
+      <div class="axis-card a1">
+        <h4>① 既ヒット連動性</h4>
+        <p>過去の数値実績から再現性が高い／最低再生保証あり</p>
+      </div>
+      <div class="axis-card a2">
+        <h4>② バズ可能性（拡散性）</h4>
+        <p>SNS拡散の起爆要素／話題性／一発バズの可能性</p>
+      </div>
+      <div class="axis-card a3">
+        <h4>③ 差別化最大度</h4>
+        <p>競合不在のブルーオーシャン／独占ポジション化</p>
+      </div>
+      <div class="axis-card a4">
+        <h4>④ 切り抜き素材効率</h4>
+        <p>1本撮影で何本の縦動画が作れるか（IG/TikTok展開）</p>
+      </div>
+      <div class="axis-card a5">
+        <h4>⑤ 撮影実行可能性</h4>
+        <p>必要時間・コスト・小道具／いざやろうと思った時に動けるか</p>
+      </div>
     </div>
-    <p><b>重み付けの根拠</b>：</p>
-    <ul>
-      <li>⑤実行可能性に最大の重み（1.3）：ユーザー方針「いざという時取れる」を最優先</li>
-      <li>①既ヒット連動性に次重み（1.2）：確実性を担保</li>
-      <li>④切り抜き効率（1.1）：投稿頻度問題の構造的解決</li>
-      <li>②バズ可能性（1.0）：標準</li>
-      <li>③差別化（0.9）：中長期効果のため短期評価ではやや低い</li>
-    </ul>
   </section>
 
-  <!-- 5. 絞り込みプロセス -->
-  <section id="filter">
-    <h2>5. 30本から5本への絞り込みプロセス</h2>
-    <div class="lead">どう絞ったか、何で消えたか</div>
-
-    <h3>5-1. Step 1：方針外フィルター</h3>
-    <p>制約条件（露出ライン・ブランディング）に違反する企画を即除外。今回は全30本が方針内設計だったため、ここでの除外なし。</p>
-
-    <h3>5-2. Step 2：撮影実行可能性で1次フィルター</h3>
-    <p>「撮影に1ヶ月以上要する」「特殊機材必要」企画を後回し（TOP5外候補に）：</p>
-    <ul>
-      <li>F-1～F-5：検証チャレンジ系（30日分散撮影必要）→ TOP5除外、ただし5位だけは別軸で評価</li>
-      <li>F-6：マッチアプリ3ヶ月（コミット最大）→ TOP5除外</li>
-      <li>E-5：漫画喫茶48時間（拘束最大）→ TOP5除外</li>
-      <li>G系：季節限定（時期合わず）→ TOP5除外</li>
-    </ul>
-    <p>残り：約20本</p>
-
-    <h3>5-3. Step 3：既ヒット連動性で2次フィルター</h3>
-    <p>「お市の既ヒット軸（ぼっき／大人漫画／プロ語り）と直接接続する企画」を優先化：</p>
-    <ul>
-      <li>A-1～A-8：ぼっき体験系8本すべて高優先</li>
-      <li>C-1, C-6：自宅系で既ヒット軸接続</li>
-      <li>E-1, E-2：大人漫画系で既ブランド接続</li>
-      <li>B-1, B-2：旅行系で大型企画</li>
-    </ul>
-
-    <h3>5-4. Step 4：切り抜き効率で3次フィルター</h3>
-    <p>5本素材以下の企画は、長期運用効率で見ると不利。</p>
-    <ul>
-      <li>A-5(焼肉)：5本 → 残す候補</li>
-      <li>A-6(寿司)：4-5本 → 候補だが下位</li>
-      <li>A-7(映画館)：3-4本 → TOP5外</li>
-      <li>D-2(入浴剤)：10本 → 候補</li>
-    </ul>
-
-    <h3>5-5. Step 5：ポートフォリオバランスで最終選定</h3>
-    <p>残った10-12本の上位候補から、<b>役割が被らない5本</b>を選定。役割は以下：</p>
-    <ul>
-      <li>「短期確実」枠 → A-1 ぼっきサウナvol.2（既キラー続編）</li>
-      <li>「差別化バズ」枠 → C-6 自宅紹介＋爬虫類（独占ポジション）</li>
-      <li>「単発バズMAX」枠 → A-3 ぼっきラブホ（強烈フック）</li>
-      <li>「運用効率最強」枠 → C-1 統合vlog（切り抜き8本）</li>
-      <li>「中期PR大型」枠 → B-2 韓国脱毛レポ（PR動線・業界連動）</li>
-    </ul>
-    <p>→ <b>5本それぞれ役割が違う＝ポートフォリオとして無駄がない</b>設計。</p>
-
-    <h3>5-6. なぜ「ぼっき温泉旅（B-1）」がTOP5に入らなかったか</h3>
-    <p>B-1ぼっき温泉旅は単独評価では高い：</p>
-    <ul>
-      <li>既ヒット連動性 ★★★★☆（ぼっき軸延長）</li>
-      <li>バズ可能性 ★★★★☆（旅行系強い）</li>
-      <li>切り抜き効率 ★★★★★（10本）</li>
-    </ul>
-    <p>だが、TOP5に入れると「ぼっき軸が3本」（サウナ+ラブホ+温泉）に偏る。<b>ポートフォリオバランス上、ぼっき軸は2本までと判断</b>し、温泉旅は第6位（控え）とした。</p>
-  </section>
-
-  <!-- 6. TOP1 詳細 -->
-  <section id="pick1">
-    <h2>6. 🥇 1位選定の深掘り</h2>
+  <!-- TOP5の選定理由 -->
+  <section>
+    <h2>💡 各TOP5の選定理由</h2>
 
     <div class="pick-block">
       <span class="pick-rank">🥇 1位</span>
       <h3>A-1 ぼっきサウナ vol.2</h3>
-      <div class="pick-tagline">既キラー続編・最低再生保証・撮影しやすさTOP</div>
 
-      <div class="reasoning-section">
-        <h4>🧠 思考プロセス：なぜ1位か</h4>
-        <p>1位は<b>「実行確度×想定再生×撮影しやすさ」の総合点が最も高い</b>べき。「絶対にハズさない1本」を1位に置くのがセオリー。</p>
-        <p>ぼっきサウナvol.1は<b>チャンネル最大ヒット32,383再生</b>。同フォーマットでvol.2を作れば、<b>再現性が極めて高い</b>。新しいアイデアの当て勘ではなく、既ヒットの再現＝ローリスク。</p>
-
-        <h4>📊 過去データからの推定</h4>
-        <div class="data-box">
-          <strong>vol.1の実績</strong>：32,383再生・いいね率2.12%・いいね688・コメント41<br>
-          <strong>vol.2想定</strong>：20,000-35,000再生（過去ファン継続視聴＋新規流入）<br>
-          <strong>根拠</strong>：YouTubeアルゴリズムは「シリーズ性」を高く評価／既存ファンが「サウナvol.2来た」と即視聴／関連動画でvol.1が再浮上
-        </div>
-
-        <h4>⚖️ トレードオフ分析</h4>
-        <div class="tradeoff">
-          <div class="tradeoff-card pro">
-            <strong>👍 メリット</strong>
-            <ul>
-              <li>撮影確度100%</li>
-              <li>vol.1の再生数も連動増</li>
-              <li>半日撮影・低コスト</li>
-              <li>既ファン期待値高</li>
-            </ul>
-          </div>
-          <div class="tradeoff-card con">
-            <strong>👎 デメリット</strong>
-            <ul>
-              <li>続編は初動より弱い傾向</li>
-              <li>新規拡散は控えめ</li>
-              <li>「vol.2マンネリ感」リスク</li>
-            </ul>
-          </div>
-        </div>
-
-        <h4>🎯 「vol.2マンネリ」回避の工夫</h4>
+      <div class="reasoning-list">
+        <h4>選んだ理由</h4>
         <ul>
-          <li>違うエリアの個性派サウナを選定（ロウリュ・薪サウナ等）</li>
-          <li>vol.1にはなかった要素を1つ追加（サウナ後の意外な発見等）</li>
-          <li>サムネはvol.1と全く違う表情・構図に</li>
+          <li><b>既最大ヒット動画の続編</b>＝再生数保証が最も確実（過去ぼっきサウナ32,383再生）</li>
+          <li>「vol.2」と銘打つことで<b>過去動画の再生数も連動して増える</b>（既存ファンが見返す）</li>
+          <li>サウナという<b>季節を問わないジャンル</b>＝いつでも撮れる</li>
+          <li>撮影が半日完結＝<b>本数確保が難しいフェーズで最適</b></li>
+          <li>「大量に出ました」匂わせフォーマットが既に確立済み＝迷いなく撮れる</li>
         </ul>
 
-        <h4>📈 スコア詳細</h4>
+        <h4>判定スコア</h4>
         <table>
-          <tr><th>軸</th><th>スコア</th><th>判定根拠</th></tr>
-          <tr><td>①既ヒット連動性</td><td><span class="score-bar">★★★★★</span></td><td>vol.1の直接続編</td></tr>
-          <tr><td>②バズ可能性</td><td><span class="score-bar">★★★☆☆</span></td><td>続編は初動弱い</td></tr>
-          <tr><td>③差別化最大度</td><td><span class="score-bar">★★★☆☆</span></td><td>vlogとして標準</td></tr>
-          <tr><td>④切り抜き効率</td><td><span class="score-bar">★★★★☆</span></td><td>5本素材</td></tr>
-          <tr><td>⑤撮影可能性</td><td><span class="score-bar">★★★★★</span></td><td>半日・低コスト</td></tr>
+          <tr><th>軸</th><th>スコア</th><th>根拠</th></tr>
+          <tr><td>既ヒット連動性</td><td>★★★★★</td><td>同フォーマット続編</td></tr>
+          <tr><td>バズ可能性</td><td>★★★☆☆</td><td>続編のため新規拡散はやや弱め</td></tr>
+          <tr><td>差別化最大度</td><td>★★★☆☆</td><td>vlog系の中では普通</td></tr>
+          <tr><td>切り抜き効率</td><td>★★★★☆</td><td>5本素材</td></tr>
+          <tr><td>撮影可能性</td><td>★★★★★</td><td>半日・低コスト</td></tr>
         </table>
       </div>
     </div>
-  </section>
 
-  <!-- 7. TOP2 詳細 -->
-  <section id="pick2">
-    <h2>7. 🥈 2位選定の深掘り</h2>
-
-    <div class="pick-block p2">
+    <div class="pick-block">
       <span class="pick-rank">🥈 2位</span>
       <h3>C-6 自宅紹介＋爬虫類ルームツアー</h3>
-      <div class="pick-tagline">本人意向反映・競合ゼロの独占ポジション・キャラ進化</div>
 
-      <div class="reasoning-section">
-        <h4>🧠 思考プロセス：なぜ2位か</h4>
-        <p>本人から<b>「爬虫類×女子のパイがほぼないので、vlog市場のちょっとした差異として扱うのがベスト」</b>と明言があった<span class="citation citation-user">本人意向</span>。これは戦略上極めて重要な情報。</p>
-        <p>差別化の本質は<b>「同質な競合の中で、独自のセット保有者になること」</b>。お市の場合「現役エステ×大人漫画×ぼっき」は既に独自セット。これに<b>「爬虫類飼育」を加えると、競合圏内ほぼゼロ</b>になる。</p>
-
-        <h4>📊 競合分析：爬虫類×女子×美容のパイ</h4>
-        <div class="data-box">
-          <strong>爬虫類飼育系YouTuber</strong>：ほぼ男性／飼育情報メイン／顔出し少ない<br>
-          <strong>女性vlog系</strong>：犬猫・雑貨が中心／爬虫類は出てこない<br>
-          <strong>美容クリエイター系</strong>：ペットなら犬猫が定番／爬虫類×美容は前例ほぼなし<br>
-          <strong>結論</strong>：「美人エステ×爬虫類×大人漫画」は<b>市場パイがほぼゼロ＝独占可能</b>
-        </div>
-
-        <h4>🎬 「ご報告（犬）」動画の数値証明</h4>
-        <p>2026-04-22投稿のご報告動画は再生4,324と多くないが、<b>いいね率2.57%・コメント率0.37%（過去最高クラス）</b>。これは<b>「お市のキャラ深掘りを見たいコア層の濃さ」</b>を示す確固たる証拠。</p>
-        <p>→ 爬虫類動画はこのキャラ深掘り路線の<b>第2弾</b>として機能する。差別化要素を加えて、犬動画より<b>新規拡散性を上げる</b>狙い。</p>
-
-        <h4>⚖️ トレードオフ分析</h4>
-        <div class="tradeoff">
-          <div class="tradeoff-card pro">
-            <strong>👍 メリット</strong>
-            <ul>
-              <li>競合ゼロの独占</li>
-              <li>キャラ立て効果絶大</li>
-              <li>自宅完結・半日撮影</li>
-              <li>シリーズ化の起点</li>
-              <li>切り抜き8-10本</li>
-            </ul>
-          </div>
-          <div class="tradeoff-card con">
-            <strong>👎 デメリット</strong>
-            <ul>
-              <li>爬虫類苦手層は離脱</li>
-              <li>「美容×爬虫類」の予想外感が好み分かれる</li>
-              <li>初動再生は爬虫類好き限定</li>
-            </ul>
-          </div>
-        </div>
-
-        <h4>🎯 「爬虫類苦手層」対策の工夫</h4>
+      <div class="reasoning-list">
+        <h4>選んだ理由</h4>
         <ul>
-          <li>サムネで爬虫類を直接見せず、シルエットor爬虫類とお市の優しい表情の対比に</li>
-          <li>冒頭で「爬虫類NG な人は…」と注意喚起＋カット飛ばし案内</li>
-          <li>爬虫類シーンの後に必ず「漫画コーナー」「キッチン」など別シーンを配置</li>
+          <li><b>「現役エステ×爬虫類×女子」のセット保有者が競合圏内にほぼゼロ</b>＝完全独占ポジション</li>
+          <li>ユーザー本人から<b>「爬虫類は差別化として扱うのがベスト」</b>と明言があった<span class="citation">本人意向</span></li>
+          <li>「ご報告（犬）」動画でキャラ深掘り路線の効果が実証済み（いいね率2.57%）＝同路線が当たる証拠</li>
+          <li>自宅完結のため<b>撮影コスト最低</b>（半日・移動なし）</li>
+          <li><b>シリーズ化の起点</b>になりやすい（vol.2「成長記録」、vol.3「お迎え秘話」等）</li>
+          <li>本人の優しい表情・ギャップ要素で<b>キャラ立てが一気に進む</b>＝ファン化加速</li>
         </ul>
 
-        <h4>📈 スコア詳細</h4>
+        <h4>判定スコア</h4>
         <table>
-          <tr><th>軸</th><th>スコア</th><th>判定根拠</th></tr>
-          <tr><td>①既ヒット連動性</td><td><span class="score-bar">★★★☆☆</span></td><td>ご報告と方向性近い</td></tr>
-          <tr><td>②バズ可能性</td><td><span class="score-bar">★★★★☆</span></td><td>意外性で拡散性あり</td></tr>
-          <tr><td>③差別化最大度</td><td><span class="score-bar">★★★★★</span></td><td>競合ゼロ</td></tr>
-          <tr><td>④切り抜き効率</td><td><span class="score-bar">★★★★★</span></td><td>8-10本</td></tr>
-          <tr><td>⑤撮影可能性</td><td><span class="score-bar">★★★★★</span></td><td>自宅完結・半日</td></tr>
+          <tr><th>軸</th><th>スコア</th><th>根拠</th></tr>
+          <tr><td>既ヒット連動性</td><td>★★★☆☆</td><td>ご報告動画と方向性近い</td></tr>
+          <tr><td>バズ可能性</td><td>★★★★☆</td><td>意外性で拡散性あり</td></tr>
+          <tr><td>差別化最大度</td><td>★★★★★</td><td>競合ゼロのブルーオーシャン</td></tr>
+          <tr><td>切り抜き効率</td><td>★★★★★</td><td>8-10本素材</td></tr>
+          <tr><td>撮影可能性</td><td>★★★★★</td><td>自宅完結・半日</td></tr>
         </table>
       </div>
     </div>
-  </section>
 
-  <!-- 8. TOP3 詳細 -->
-  <section id="pick3">
-    <h2>8. 🥉 3位選定の深掘り</h2>
-
-    <div class="pick-block p3">
+    <div class="pick-block">
       <span class="pick-rank">🥉 3位</span>
       <h3>A-3 ぼっきラブホ女子会</h3>
-      <div class="pick-tagline">バズMAX・強烈フック・「ラブホ女1人」自体が拡散要素</div>
 
-      <div class="reasoning-section">
-        <h4>🧠 思考プロセス：なぜ3位か</h4>
-        <p>「バズ可能性最大」の砲弾として配置。1位2位が「確実性重視」「差別化重視」だったので、3位は<b>「単発バズ狙いの一発」</b>を入れる必要があった。</p>
-        <p>バズの条件は<b>「1秒で説明可能なフック」</b>。「ラブホに女1人」は条件を満たす最強カテゴリ：<br>
-        ① 一般的でない設定<br>
-        ② 想像を喚起する空間<br>
-        ③ 「えっ何して？」の好奇心刺激</p>
-
-        <h4>📊 類似事例の数値感</h4>
-        <div class="data-box">
-          <strong>他YouTuberの「ラブホ1人」企画</strong>：再生数10-50万クラスのバズ実績多数<br>
-          <strong>お市の場合の優位性</strong>：「現役エステ」職業権威＋「大人漫画」ブランド＋「ぼっき」軸の三重連動。同じ企画でも本人キャラで差別化可能。
-        </div>
-
-        <h4>⚖️ トレードオフ分析</h4>
-        <div class="tradeoff">
-          <div class="tradeoff-card pro">
-            <strong>👍 メリット</strong>
-            <ul>
-              <li>1秒で説明可能なフック</li>
-              <li>バズ可能性最大</li>
-              <li>切り抜き8-10本</li>
-              <li>休憩利用なら4-6時間</li>
-              <li>男性視聴者に強い</li>
-            </ul>
-          </div>
-          <div class="tradeoff-card con">
-            <strong>👎 デメリット</strong>
-            <ul>
-              <li>規約配慮が必須</li>
-              <li>サムネ設計が難しい</li>
-              <li>方針内設計が求められる</li>
-              <li>女性視聴者に賛否</li>
-            </ul>
-          </div>
-        </div>
-
-        <h4>🎯 規約配慮の具体策</h4>
+      <div class="reasoning-list">
+        <h4>選んだ理由</h4>
         <ul>
-          <li>性的なシーン・小道具は一切なし</li>
-          <li>「健全な利用」に徹する（漫画読む・カラオケ・お風呂入る・寝る）</li>
-          <li>「ラブホ＝女1人で快適に過ごせる施設」というポジショニング</li>
-          <li>サムネは部屋着姿でベッドに座る写真＋「快適すぎる」みたいな健全寄りキャプション</li>
-          <li>動画冒頭で「健全企画です」明示</li>
+          <li><b>「ラブホに女1人」自体が強烈なフック</b>＝1秒で説明可能なバズ要素</li>
+          <li>お市の<b>「ぼっき」ブランドと完全融合</b>＝既ヒット軸の延長</li>
+          <li>露出は<b>部屋着・浴衣・タオル巻きまで</b>＝方針内で完結</li>
+          <li><b>切り抜き素材が大量に生成可能</b>（パネル選び／部屋ツアー／お風呂／カラオケ etc）</li>
+          <li>ラブホ＝<b>男性視聴者の心理にも刺さる場所</b>＝コア層強化＋新規プール獲得両立</li>
+          <li>休憩利用なら<b>4-6時間で撮影完結</b>＝1日仕事ではない</li>
         </ul>
 
-        <h4>📈 想定リアクション</h4>
+        <h4>注意点</h4>
         <ul>
-          <li><b>男性視聴者</b>：「えっマジで？」→ クリック→ 健全な内容に驚き→ 好感度UP</li>
-          <li><b>女性視聴者</b>：「分かる！ラブホ快適だよね」→ 共感→ コメント</li>
-          <li><b>炎上層</b>：「方針外では？」→ コメ欄で「健全企画です」と即対応</li>
+          <li>規約配慮：性的内容は一切なし／健全な利用シーンに徹する</li>
+          <li>サムネ・タイトル設計で「方針内」感を演出</li>
         </ul>
 
-        <h4>📈 スコア詳細</h4>
+        <h4>判定スコア</h4>
         <table>
-          <tr><th>軸</th><th>スコア</th><th>判定根拠</th></tr>
-          <tr><td>①既ヒット連動性</td><td><span class="score-bar">★★★★☆</span></td><td>ぼっき軸延長</td></tr>
-          <tr><td>②バズ可能性</td><td><span class="score-bar">★★★★★</span></td><td>強烈フック</td></tr>
-          <tr><td>③差別化最大度</td><td><span class="score-bar">★★★★☆</span></td><td>本人キャラで差別化</td></tr>
-          <tr><td>④切り抜き効率</td><td><span class="score-bar">★★★★★</span></td><td>8-10本</td></tr>
-          <tr><td>⑤撮影可能性</td><td><span class="score-bar">★★★★☆</span></td><td>4-6時間で完結</td></tr>
+          <tr><th>軸</th><th>スコア</th><th>根拠</th></tr>
+          <tr><td>既ヒット連動性</td><td>★★★★☆</td><td>ぼっき軸の延長</td></tr>
+          <tr><td>バズ可能性</td><td>★★★★★</td><td>強烈フック・拡散最大</td></tr>
+          <tr><td>差別化最大度</td><td>★★★★☆</td><td>類似企画あるが本人キャラで差別化</td></tr>
+          <tr><td>切り抜き効率</td><td>★★★★★</td><td>8-10本素材</td></tr>
+          <tr><td>撮影可能性</td><td>★★★★☆</td><td>4-6時間で完結</td></tr>
         </table>
       </div>
     </div>
-  </section>
 
-  <!-- 9. TOP4 詳細 -->
-  <section id="pick4">
-    <h2>9. 4️⃣ 4位選定の深掘り</h2>
-
-    <div class="pick-block p4">
+    <div class="pick-block">
       <span class="pick-rank">4️⃣ 4位</span>
       <h3>C-1 統合vlog・帰宅ルーティン</h3>
-      <div class="pick-tagline">運用効率最強・1本で4要素全部入り・実質1位級</div>
 
-      <div class="reasoning-section">
-        <h4>🧠 思考プロセス：なぜ4位（実質1位級なのに）</h4>
-        <p>この企画は<b>運用効率の観点では実質1位</b>。だが、TOP順位は「短期バズの観点」で並べたため4位とした。<b>長期運用視点では4位＝最重要</b>。</p>
-        <p>順位だけ見ると軽く見えるが、<b>「これだけは絶対やるべき」企画</b>として理解してほしい。</p>
-
-        <h4>📊 数値ロジック：なぜ「実質1位」か</h4>
-        <div class="data-box">
-          <strong>1本撮影で生成される素材</strong>：8本（IG×3／TikTok×2／YT Shorts×1／X画像／xfans限定）<br>
-          <strong>普通の単独vlog</strong>：素材5本程度<br>
-          <strong>運用効率比</strong>：1.6倍<br>
-          <strong>シリーズ化前提</strong>：vol.1〜vol.10で半年運用可能<br>
-          <strong>累積素材</strong>：80本（vlog本編10本＋切り抜き70本）
-        </div>
-
-        <h4>🎬 構造的優位性</h4>
-        <p>統合vlogは「4要素（職業権威×爬虫類×ASMR×大人漫画）を1本に詰め込む」構造。これによって：</p>
+      <div class="reasoning-list">
+        <h4>選んだ理由</h4>
         <ul>
-          <li>新規視聴者が「お市の世界観」を1本で全部理解できる＝新規ファン化率高</li>
-          <li>切り抜きで「爬虫類シーンだけ」「スキンケアASMRだけ」と切り出し、媒体別最適化が可能</li>
-          <li>本人キャラの全方位を見せる＝ファン化加速</li>
-          <li>vol.毎にどこか1要素を強化（vol.4は爬虫類深掘り等）でマンネリ回避</li>
+          <li><b>1本で4要素全部入り</b>（職業権威×爬虫類×ASMR×大人漫画）＝お市の世界観完全パッケージ</li>
+          <li><b>切り抜き運用効率が最強</b>（1本撮影→8素材→5媒体展開）＝本数確保問題を構造的に解決</li>
+          <li>vol.1〜vol.10で<b>シリーズ化の主力企画</b>になり得る</li>
+          <li>既提案「統合vlog企画書」として詳細設計済み＝撮影設計コスト低</li>
+          <li>IG→YT遷移の動線として最適（プロ文脈→プライベート文脈の橋渡し）</li>
+          <li>2位の「爬虫類」と<b>素材を共通化できる</b>＝撮影効率二重</li>
         </ul>
 
-        <h4>⚖️ トレードオフ分析</h4>
-        <div class="tradeoff">
-          <div class="tradeoff-card pro">
-            <strong>👍 メリット</strong>
-            <ul>
-              <li>切り抜き素材8本</li>
-              <li>シリーズ化最強</li>
-              <li>4要素一気見せ</li>
-              <li>自宅完結・半日</li>
-              <li>新規ファン化率高</li>
-              <li>2位爬虫類と素材共通化可</li>
-            </ul>
-          </div>
-          <div class="tradeoff-card con">
-            <strong>👎 デメリット</strong>
-            <ul>
-              <li>単発バズ性は弱め</li>
-              <li>10分尺の編集負荷</li>
-              <li>4要素まとめる難しさ</li>
-            </ul>
-          </div>
-        </div>
-
-        <h4>🎯 4位に置いた戦略的理由</h4>
-        <p>仮にこれを1位にすると、TOP5が<b>「定常運用型ばかり」</b>になり、バズ砲弾が不足する。「単発で跳ねる企画」もポートフォリオに必要。</p>
-        <p>そのため：</p>
+        <h4>なぜ4位か（3位より下げた理由）</h4>
         <ul>
-          <li>1-3位：短期バズ＋確実性重視</li>
-          <li>4位：長期運用効率重視（=これ）</li>
-          <li>5位：中期PR・大型企画</li>
+          <li>「帰宅ルーティン」は他vloger多数＝バズ単発性は3位ラブホに負ける</li>
+          <li>ただし<b>長期運用効率では1位級</b>＝中長期で見れば最重要</li>
+          <li>短期バズ重視のTOP順位では4位だが、<b>運用観点では実質1位</b></li>
         </ul>
-        <p>と<b>役割分担</b>させた。順位＝重要度ではない。</p>
 
-        <h4>📈 スコア詳細</h4>
+        <h4>判定スコア</h4>
         <table>
-          <tr><th>軸</th><th>スコア</th><th>判定根拠</th></tr>
-          <tr><td>①既ヒット連動性</td><td><span class="score-bar">★★★☆☆</span></td><td>新フォーマット</td></tr>
-          <tr><td>②バズ可能性</td><td><span class="score-bar">★★★☆☆</span></td><td>定常型</td></tr>
-          <tr><td>③差別化最大度</td><td><span class="score-bar">★★★★☆</span></td><td>4要素統合は独自</td></tr>
-          <tr><td>④切り抜き効率</td><td><span class="score-bar">★★★★★</span></td><td>8本・5媒体展開</td></tr>
-          <tr><td>⑤撮影可能性</td><td><span class="score-bar">★★★★★</span></td><td>自宅・半日</td></tr>
+          <tr><th>軸</th><th>スコア</th><th>根拠</th></tr>
+          <tr><td>既ヒット連動性</td><td>★★★☆☆</td><td>新フォーマット</td></tr>
+          <tr><td>バズ可能性</td><td>★★★☆☆</td><td>定常的・バズ性は弱め</td></tr>
+          <tr><td>差別化最大度</td><td>★★★★☆</td><td>4要素統合は独自</td></tr>
+          <tr><td>切り抜き効率</td><td>★★★★★</td><td>8本素材・5媒体展開</td></tr>
+          <tr><td>撮影可能性</td><td>★★★★★</td><td>自宅完結・半日</td></tr>
         </table>
       </div>
     </div>
-  </section>
 
-  <!-- 10. TOP5 詳細 -->
-  <section id="pick5">
-    <h2>10. 5️⃣ 5位選定の深掘り</h2>
-
-    <div class="pick-block p5">
+    <div class="pick-block">
       <span class="pick-rank">5️⃣ 5位</span>
       <h3>B-2 韓国脱毛レポ</h3>
-      <div class="pick-tagline">中期PR大型・業界トレンド連動・2602戦略との重畳</div>
 
-      <div class="reasoning-section">
-        <h4>🧠 思考プロセス：なぜ5位</h4>
-        <p>5位は<b>「中長期で効く投資型企画」</b>を入れたかった。1-4位は短中期の実行ベースだが、5位はもう少し<b>戦略意図に応える大型企画</b>。</p>
-        <p>「韓国脱毛レポ」は撮影実行ハードルは高い（渡韓費用・施術代・2泊3日）が、<b>当たれば最大級のリターン</b>。</p>
+      <div class="reasoning-list">
+        <h4>選んだ理由</h4>
+        <ul>
+          <li><b>業界トレンド「韓国脱毛市場の隆盛」と完全連動</b><span class="citation">業界分析</span></li>
+          <li>お市の<b>「現役エステ」職業権威を最大限活用</b>できる海外レポ</li>
+          <li><b>PR動線が明確</b>（韓国クリニック・韓国コスメメーカーから案件取れる）</li>
+          <li>2602戦略の「韓国インスタ立ち上げ」と相互送客可能<span class="citation">2602戦略</span></li>
+          <li>切り抜き素材が<b>12本生成可能</b>＝1回の渡韓で大量素材</li>
+          <li>旅行vlog自体が拡散しやすいジャンル</li>
+        </ul>
 
-        <h4>📊 5位選定の3つの根拠</h4>
-        <ol>
-          <li><b>業界トレンド完全一致</b>：「韓国脱毛市場の隆盛・男女問わず・医療脱毛主流」<span class="citation citation-data">業界分析</span></li>
-          <li><b>2602戦略との重畳</b>：「韓国インスタを立ち上げ」が既定路線<span class="citation citation-strategy">戦略文書</span>。動画素材を韓国IGにも転用可能</li>
-          <li><b>PR案件の出口設計</b>：渡韓レポは韓国クリニック・韓国コスメメーカーから案件取れる構造</li>
-        </ol>
+        <h4>なぜ5位か（上位より下げた理由）</h4>
+        <ul>
+          <li>渡韓コスト（5-10万円）＋施術代（3-5万円）＝<b>実行ハードル高い</b></li>
+          <li>2泊3日確保＋スケジュール調整が必要</li>
+          <li>すぐ撮れる企画ではないため、上位4本より優先度下がる</li>
+          <li>ただし<b>当たれば最大級のリターン</b>＝中期計画には必須</li>
+        </ul>
 
-        <h4>💰 ROI（投資対効果）試算</h4>
-        <div class="data-box">
-          <strong>投資</strong>：渡韓費用5-10万円＋施術代3-5万円＝合計8-15万円<br>
-          <strong>リターン1（広告収益）</strong>：想定再生35,000-55,000→広告収益5,000-15,000円（単発）<br>
-          <strong>リターン2（PR案件）</strong>：1本で15-30万円のPR案件1回相当<br>
-          <strong>リターン3（IG/TikTok切り抜き12本）</strong>：フォロワー獲得・サブスク誘導<br>
-          <strong>リターン4（韓国インスタ素材）</strong>：2602戦略の一環として活用<br>
-          <strong>結論</strong>：単発の収支はトントンだが、<b>戦略全体への寄与で見れば高ROI</b>
-        </div>
-
-        <h4>⚖️ トレードオフ分析</h4>
-        <div class="tradeoff">
-          <div class="tradeoff-card pro">
-            <strong>👍 メリット</strong>
-            <ul>
-              <li>切り抜き12本（最多）</li>
-              <li>PR動線明確</li>
-              <li>業界トレンド連動</li>
-              <li>2602戦略貢献</li>
-              <li>差別化最大</li>
-              <li>男性視聴者にも訴求</li>
-            </ul>
-          </div>
-          <div class="tradeoff-card con">
-            <strong>👎 デメリット</strong>
-            <ul>
-              <li>渡韓コスト</li>
-              <li>2-3日拘束</li>
-              <li>スケジュール調整必要</li>
-              <li>言語・現地リサーチ負荷</li>
-              <li>すぐ撮れない</li>
-            </ul>
-          </div>
-        </div>
-
-        <h4>🎯 撮影実現の戦略</h4>
-        <p>すぐ実行困難なため、以下の段階的アプローチを推奨：</p>
-        <ol>
-          <li>事前リサーチ（クリニック選定・日本語OK・口コミ確認）→ 1-2週間</li>
-          <li>PR案件の事前打診（韓国クリニックに動画素材化を打診）→ 1ヶ月</li>
-          <li>渡韓スケジュール確保（連休利用）→ 1-2ヶ月先</li>
-          <li>撮影実施 → 2泊3日</li>
-          <li>編集→公開 → 2週間</li>
-        </ol>
-        <p>→ 完成まで3ヶ月程度のロードマップ。今すぐ撮るのではなく、<b>計画的に準備する企画</b>。</p>
-
-        <h4>📈 スコア詳細</h4>
+        <h4>判定スコア</h4>
         <table>
-          <tr><th>軸</th><th>スコア</th><th>判定根拠</th></tr>
-          <tr><td>①既ヒット連動性</td><td><span class="score-bar">★★☆☆☆</span></td><td>新ジャンル</td></tr>
-          <tr><td>②バズ可能性</td><td><span class="score-bar">★★★★☆</span></td><td>海外レポ強い</td></tr>
-          <tr><td>③差別化最大度</td><td><span class="score-bar">★★★★★</span></td><td>プロ×海外は希少</td></tr>
-          <tr><td>④切り抜き効率</td><td><span class="score-bar">★★★★★</span></td><td>12本（最多）</td></tr>
-          <tr><td>⑤撮影可能性</td><td><span class="score-bar">★★☆☆☆</span></td><td>予算・時間必要</td></tr>
+          <tr><th>軸</th><th>スコア</th><th>根拠</th></tr>
+          <tr><td>既ヒット連動性</td><td>★★☆☆☆</td><td>新ジャンル</td></tr>
+          <tr><td>バズ可能性</td><td>★★★★☆</td><td>海外レポは拡散性高</td></tr>
+          <tr><td>差別化最大度</td><td>★★★★★</td><td>プロ×海外レポは希少</td></tr>
+          <tr><td>切り抜き効率</td><td>★★★★★</td><td>12本素材</td></tr>
+          <tr><td>撮影可能性</td><td>★★☆☆☆</td><td>渡韓・予算必要</td></tr>
         </table>
       </div>
     </div>
   </section>
 
-  <!-- 11. 選ばなかった企画 -->
-  <section id="nottaken">
-    <h2>11. 選ばなかった企画と詳細理由</h2>
-    <div class="lead">なぜTOP5に入らなかったか／代替候補として何を考えたか</div>
+  <!-- 選ばなかった理由 -->
+  <section>
+    <h2>❌ 「TOP5に入れなかった」企画と理由</h2>
+    <p>30本中、上位候補だったが今回のTOP5から外したもの。</p>
 
     <div class="nottaken">
-      <strong>B-1 ぼっき温泉一人旅2泊3日（実質第6位）</strong>
-      <p>ぼっき軸の正統派生で実行確度高い。だが<b>韓国脱毛レポと旅行系で被る</b>＋ぼっき軸が3本になりポートフォリオ偏る。第6位として控え。</p>
-      <span class="factor">減点要因：ポートフォリオバランス（ぼっき軸が偏る）</span>
-    </div>
-
-    <div class="nottaken">
-      <strong>E-2 漫画一気読み24時間チャレンジ（バズ性高だが…）</strong>
-      <p>バズ可能性は高いが<b>24時間拘束</b>＝今のフェーズでの実行ハードル高い。本数確保が課題の現状では非優先。<b>中長期で実施推奨</b>。</p>
-      <span class="factor">減点要因：撮影実行可能性★★☆☆☆</span>
+      <strong>E-2 漫画一気読み24時間チャレンジ（バズ性は高いが時間負荷大）</strong>
+      <p>バズ可能性は高いが<b>24時間拘束</b>＝今のフェーズでの実行ハードル高い。本数確保が課題の現状では非優先。中長期で実施推奨。</p>
     </div>
 
     <div class="nottaken">
       <strong>F-6 マッチアプリ3ヶ月企画（バズMAXだが期間長い）</strong>
-      <p>恋愛系で拡散性最大だが、<b>3ヶ月の継続撮影</b>が必要。コミット力が試される＝今すぐ着手しづらい。<b>半年後の主力企画候補</b>。</p>
-      <span class="factor">減点要因：撮影実行可能性★☆☆☆☆</span>
+      <p>恋愛系で拡散性最大だが、<b>3ヶ月の継続撮影</b>が必要。コミット力が試される＝今すぐ着手しづらい。半年後の主力企画候補。</p>
+    </div>
+
+    <div class="nottaken">
+      <strong>B-1 ぼっき温泉一人旅2泊3日（最も既キラー軸延長だが）</strong>
+      <p>ぼっき軸の正統派生で実行確度高い。だが<b>韓国脱毛レポと旅行系で被る</b>＋温泉vlogの定番感はバズ性ではラブホに劣る。第6位として控え。</p>
     </div>
 
     <div class="nottaken">
       <strong>C-7 飲んで帰ってきた日（希少シーンだが…）</strong>
-      <p>「酔ったお市」希少性は高いが、<b>飲み会の自然発生に依存</b>＝計画的に撮影できない。<b>チャンスがあれば即撮るべき</b>。</p>
-      <span class="factor">減点要因：計画的撮影不可</span>
+      <p>「酔ったお市」希少性は高いが、<b>飲み会の自然発生に依存</b>＝計画的に撮影できない。チャンスがあれば即撮るべき。</p>
     </div>
 
     <div class="nottaken">
       <strong>D-1 お風呂編バスタイム（匂わせ強だが…）</strong>
-      <p>4位「統合vlog」に内包される＝<b>単独企画として重複</b>するため統合版を優先。<b>統合vlog後にスピンオフとして可能性</b>。</p>
-      <span class="factor">減点要因：他企画と重複</span>
-    </div>
-
-    <div class="nottaken">
-      <strong>E-1 大人漫画100冊棚卸し（ブランド軸だが…）</strong>
-      <p>大人漫画ブランド強化に最適だが、<b>15-20分の長尺＋15本切り抜き</b>で編集負荷大。<b>シリーズ化「お市の今夜の一冊」が立ち上がってから実施</b>のほうが効果的。</p>
-      <span class="factor">減点要因：実施タイミング早すぎ</span>
-    </div>
-
-    <div class="nottaken">
-      <strong>F-1 家庭用脱毛器1ヶ月毎日チャレンジ（PR動線強だが…）</strong>
-      <p>PR動線は最強だが、<b>30日撮影＋経過写真</b>が必要で「いざ取れる」と相性悪い。<b>PR案件取得後に実施</b>すべき。</p>
-      <span class="factor">減点要因：撮影期間長</span>
-    </div>
-
-    <h3>11-x 「もしTOP10だったら」追加される企画</h3>
-    <ol>
-      <li>6位：B-1 ぼっき温泉一人旅</li>
-      <li>7位：D-1 お風呂編バスタイム</li>
-      <li>8位：E-1 大人漫画100冊棚卸し</li>
-      <li>9位：C-7 飲んで帰ってきた日（チャンス待ち）</li>
-      <li>10位：A-2 ぼっきカプセルホテル</li>
-    </ol>
-  </section>
-
-  <!-- 12. ポートフォリオ -->
-  <section id="portfolio">
-    <h2>12. ポートフォリオ全体設計の思想</h2>
-
-    <h3>12-1. 「役割が被らない5本」の構造</h3>
-    <table>
-      <thead><tr><th>順位</th><th>役割</th><th>狙い</th><th>該当</th></tr></thead>
-      <tbody>
-        <tr><td>1位</td><td>短期確実</td><td>外さない1本</td><td>ぼっきサウナ vol.2</td></tr>
-        <tr><td>2位</td><td>差別化最大</td><td>独自ポジション化</td><td>自宅紹介＋爬虫類</td></tr>
-        <tr><td>3位</td><td>単発バズMAX</td><td>知名度引き上げ</td><td>ぼっきラブホ</td></tr>
-        <tr><td>4位</td><td>運用効率最強</td><td>長期素材ストック</td><td>統合vlog</td></tr>
-        <tr><td>5位</td><td>中期PR大型</td><td>戦略連動・収益化</td><td>韓国脱毛レポ</td></tr>
-      </tbody>
-    </table>
-
-    <h3>12-2. ブランド4本柱の全方位カバー</h3>
-    <table>
-      <thead><tr><th>4本柱</th><th>1位</th><th>2位</th><th>3位</th><th>4位</th><th>5位</th></tr></thead>
-      <tbody>
-        <tr><td>現役脱毛エステ</td><td>○</td><td></td><td></td><td>○</td><td>◎</td></tr>
-        <tr><td>大人漫画好き</td><td></td><td>○</td><td>○</td><td>◎</td><td></td></tr>
-        <tr><td>ぼっき</td><td>◎</td><td></td><td>◎</td><td>○</td><td></td></tr>
-        <tr><td>匂わせ言葉遊び</td><td>◎</td><td></td><td>◎</td><td>○</td><td></td></tr>
-      </tbody>
-    </table>
-    <p>→ 5本で4本柱を全カバー。<b>ブランディングに穴がない</b>。</p>
-
-    <h3>12-3. 切り抜き素材総量と媒体配分</h3>
-    <table>
-      <thead><tr><th>企画</th><th>YT本編</th><th>切り抜き</th><th>媒体配分</th></tr></thead>
-      <tbody>
-        <tr><td>1位 サウナ</td><td>1本</td><td>5本</td><td>IG×2/TT×3</td></tr>
-        <tr><td>2位 爬虫類</td><td>1本</td><td>8-10本</td><td>IG×4/TT×4</td></tr>
-        <tr><td>3位 ラブホ</td><td>1本</td><td>8-10本</td><td>IG×4/TT×4</td></tr>
-        <tr><td>4位 統合</td><td>1本</td><td>8本</td><td>IG×3/TT×2/YTS×1/X×1/xfans×1</td></tr>
-        <tr><td>5位 韓国</td><td>1本</td><td>12本</td><td>IG×5/TT×4/YTS×3</td></tr>
-        <tr><td><b>合計</b></td><td><b>5本</b></td><td><b>41-45本</b></td><td>5媒体全網羅</td></tr>
-      </tbody>
-    </table>
-    <p>→ <b>5本撮影で46-50本の総素材</b>＝月10本以上の縦動画投稿が可能になる構造。</p>
-
-    <h3>12-4. 実施順序の設計</h3>
-    <div class="timeline-step">
-      <div class="timeline-num">1</div>
-      <div class="timeline-content">
-        <strong>第1週：4位 統合vlog</strong>
-        まず4要素統合版で「お市の世界観」を確立。爬虫類のお披露目も兼ねる。これで切り抜き8本確保。
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-num">2</div>
-      <div class="timeline-content">
-        <strong>第2週：1位 ぼっきサウナ vol.2</strong>
-        既ヒット派生で確実な再生確保。切り抜き5本。
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-num">3</div>
-      <div class="timeline-content">
-        <strong>第3-4週：3位 ぼっきラブホ</strong>
-        バズ砲弾投入。撮影は4-6時間で完結。切り抜き8-10本。
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-num">4</div>
-      <div class="timeline-content">
-        <strong>第5-6週：2位 自宅紹介＋爬虫類 vol.2</strong>
-        統合vlogで爬虫類露出済みなので、独立した深掘り版を投下。切り抜き8-10本。
-      </div>
-    </div>
-    <div class="timeline-step">
-      <div class="timeline-num">5</div>
-      <div class="timeline-content">
-        <strong>第2-3ヶ月：5位 韓国脱毛レポ</strong>
-        準備期間取って大型企画として完成。切り抜き12本。
-      </div>
+      <p>4位「統合vlog」に内包される＝<b>単独企画として重複</b>するため統合版を優先。</p>
     </div>
   </section>
 
-  <!-- 13. リスク -->
-  <section id="risk">
-    <h2>13. 想定リスクと対策</h2>
-    <div class="lead">5本実施に伴う潜在リスクを事前検討</div>
+  <!-- ポートフォリオ思想 -->
+  <section>
+    <h2>🎨 全体ポートフォリオの設計思想</h2>
 
-    <h3>リスク1：撮影本数が結局増えない</h3>
-    <p><b>原因想定</b>：本数確保が課題のフェーズで5本一気に撮るのは負荷大</p>
-    <p><b>対策</b>：1位ぼっきサウナvol.2 と 4位統合vlog の2本だけでも先行実施。残り3本は段階的。</p>
+    <h3>1️⃣ 「短期バズ」と「長期運用」のバランス</h3>
+    <ul>
+      <li>1位ぼっきサウナvol.2＝<b>短期確実</b></li>
+      <li>3位ラブホ＝<b>短期バズ</b></li>
+      <li>4位統合vlog＝<b>長期運用効率</b></li>
+      <li>5位韓国脱毛＝<b>中期PR含む大型</b></li>
+      <li>2位爬虫類＝<b>差別化＋シリーズ起点</b></li>
+    </ul>
+    <p>＝5本それぞれ違う役割を持たせ、ポートフォリオとして偏らない設計。</p>
 
-    <h3>リスク2：ぼっきラブホで規約違反指摘</h3>
-    <p><b>原因想定</b>：タイトル・サムネが性的に解釈される</p>
-    <p><b>対策</b>：「健全な利用」を冒頭で明示／サムネは部屋着で「快適すぎる」など健全寄り訴求／規約に触れる表現は徹底排除</p>
+    <h3>2️⃣ ブランド4本柱を全て活用</h3>
+    <ul>
+      <li><b>現役脱毛エステ</b>：1位（プロ目線サウナ）／5位（韓国脱毛）／4位（スキンケアシーン）</li>
+      <li><b>大人漫画好き</b>：3位（ラブホで漫画）／4位（漫画タイム）</li>
+      <li><b>ぼっき</b>：1位／3位／4位（爬虫類との「ぼっち卒業」）</li>
+      <li><b>匂わせ言葉遊び</b>：1位（「大量に出ました」）／3位（「女1人でラブホ」）</li>
+    </ul>
+    <p>＝5本で4本柱を全カバー＝<b>ブランド全方位強化</b>。</p>
 
-    <h3>リスク3：爬虫類動画で女性視聴者離脱</h3>
-    <p><b>原因想定</b>：爬虫類が苦手な視聴者層</p>
-    <p><b>対策</b>：冒頭で「爬虫類NG な人は…」注意喚起／爬虫類シーン後に必ず別シーン挿入／サムネで爬虫類を直接見せない</p>
-
-    <h3>リスク4：韓国脱毛レポの撮影遅延</h3>
-    <p><b>原因想定</b>：渡韓スケジュール調整・予算確保・PR案件成立</p>
-    <p><b>対策</b>：3ヶ月のロードマップで段階管理／PR案件取れなくても自費で実施判断／代替候補B-1温泉旅を控え</p>
-
-    <h3>リスク5：ポートフォリオ偏りの逆発生</h3>
-    <p><b>原因想定</b>：5本のうち2-3本だけ実施で偏る</p>
-    <p><b>対策</b>：実施順序を「1本目=統合vlog（4要素全部）」にすることでブランド偏り回避</p>
+    <h3>3️⃣ 切り抜き素材の総量</h3>
+    <table>
+      <tr><th>企画</th><th>切り抜き本数</th></tr>
+      <tr><td>1位 ぼっきサウナ vol.2</td><td>5本</td></tr>
+      <tr><td>2位 自宅紹介＋爬虫類</td><td>8-10本</td></tr>
+      <tr><td>3位 ぼっきラブホ</td><td>8-10本</td></tr>
+      <tr><td>4位 統合vlog</td><td>8本</td></tr>
+      <tr><td>5位 韓国脱毛レポ</td><td>12本</td></tr>
+      <tr><td><b>合計</b></td><td><b>41-45本</b></td></tr>
+    </table>
+    <p>＝<b>5本撮影でIG/TikTok縦動画41-45本</b>が確保できる。クロスプラットフォーム展開未着手という弱点に直撃する設計。</p>
   </section>
 
-  <!-- 14. 結論 -->
-  <div class="conclusion" id="conclusion">
-    <h2>14. 結論：選定の核心</h2>
+  <!-- 結論 -->
+  <div class="conclusion">
+    <h2>🔑 結論：選定の核心</h2>
     <p>
       TOP5は<b>「すぐ撮れる × 既ヒット連動 × 差別化 × 切り抜き効率」</b>の4軸交差点を埋める設計。<br><br>
-
-      表面上は<b>「再生数の高そうな順」</b>に見えるが、実際は<b>「役割が違う5本のポートフォリオ」</b>として構築している。<br><br>
-
-      ・1位～3位は「<strong>短期バズ＋本数確保</strong>」枠<br>
-      ・4位は「<strong>長期運用効率の最強型</strong>」枠（実質1位級）<br>
-      ・5位は「<strong>中期PR・戦略連動・収益化</strong>」枠<br><br>
-
-      ユーザー本人から明言された「<strong>爬虫類は差別化として扱うのがベスト</strong>」を2位に反映し、<br>
-      「<strong>切り抜きで回したい</strong>」を全企画の切り抜き素材総量<strong>41-45本</strong>という形で実装。<br>
-      「<strong>サウナのような露出があるvlogは検証したい</strong>」を1位サウナvol.2と3位ラブホで具体化。<br><br>
-
-      この5本を順次実施すれば、<strong>現状の弱点（本数不足・シリーズ化未着手・クロス展開ゼロ）が30日以内にすべて解消される構造</strong>になっている。<br><br>
-
-      さらに5本完了時には<strong>YT5本＋切り抜き41-45本＝計46-50本のコンテンツ資産</strong>が手元に残る。これは現在のチャンネル動画数12本に対して<strong>4倍の本数</strong>であり、投稿頻度問題を構造的に解決する。
+      1位～3位は<b>「短期バズ＋本数確保」</b>に振り、4位は<b>「長期運用効率の最強型」</b>として配置、5位は<b>「中期PR・拡張型」</b>として組み込んだ。<br><br>
+      ユーザー本人から明言された「<strong>爬虫類は差別化として扱うのがベスト</strong>」を2位に反映、「<strong>切り抜きで回したい</strong>」を全企画の切り抜き素材総量41-45本という形で実装。<br><br>
+      この5本を順次実施すれば、<strong>現状の弱点（本数不足・シリーズ化未着手・クロス展開ゼロ）が30日以内にすべて解消</strong>される構造になっている。
     </p>
   </div>
 
 </div>
-
-<a href="#" class="back-to-top">↑</a>
 
 </body>
 </html>
